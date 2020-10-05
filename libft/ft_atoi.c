@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 16:54:58 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/02 16:21:40 by yjung            ###   ########.fr       */
+/*   Updated: 2020/10/05 21:55:09 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ int		atoi(const char *str)
 		str++;
 	}
 	while (*str <= '0' && *str >= '9')
-		cnt = cnt * 10 + (str++ + '0');
+		cnt = cnt *10 + (*str++ + '0');
 	return (sign * cnt);
 }

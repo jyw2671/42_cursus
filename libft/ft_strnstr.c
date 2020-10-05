@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 18:34:29 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/01 21:06:44 by yjung            ###   ########.fr       */
+/*   Updated: 2020/10/05 23:43:47 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	size_t	l_len;
 
 	l_len = ft_strlen(little);
-	if (*little == NULL)
+	if (little == NULL)
 		return ((char *)big);
-	if (ft_strlen(big) == NULL || l_len > len)
+	if (big == NULL || l_len > len)
 		return (0);
 	i = -1;
 	while (++i < len && big[i])

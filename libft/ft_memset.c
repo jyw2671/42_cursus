@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 21:33:04 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/02 15:32:15 by yjung            ###   ########.fr       */
+/*   Updated: 2020/10/05 22:34:16 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*ft_memset(void *dst, int c, size_t n)
 	i = 0;
 	while (i < n)
 	{
-		n_dst[i] = (unsigned char *)c;
+		n_dst[i] = (unsigned char)c;
 		++i;
 	}
 	return (dst);
