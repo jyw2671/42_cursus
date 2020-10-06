@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/28 15:25:38 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/06 22:07:07 by yjung            ###   ########.fr       */
+/*   Created: 2020/10/06 20:47:51 by yjung             #+#    #+#             */
+/*   Updated: 2020/10/06 21:04:38 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+int		ft_memcmp(const void *a1, const void *a2, size_t n)
 {
-	size_t	i;
+	unsigned char	*n_a1;
+	unsigned char	*n_a2;
+	size_t			i;
 
+	n_a1 = (unsigned char *)a1;
+	n_a2 = (unsigned char *)a2;
 	i = 0;
-	if (dst == NULL && src == NULL)
-		return (0);
-	if (size == 0)
-		return (ft_strlen(src));
-	while (src[i] && i < size - 1)
+	while (i < n)
 	{
-		dst[i] = src[i];
-		++i;
+		if (n_a1[i] != n_a2[i])
+			return (n_a1[i] - n_a2[i]);
+		i++;
 	}
-	if (size != 0)
-		dst[i] = '\0';
-	return (ft_strlen(src));
+	return (0);
 }
