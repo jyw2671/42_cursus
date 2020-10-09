@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 16:20:17 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/09 19:23:35 by yjung            ###   ########.fr       */
+/*   Updated: 2020/10/10 01:21:48 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,7 @@ int					ft_isprint(int c);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
 int					ft_atoi(const char *str);
+void				*ft_calloc(size_t cnt, size_t size);
+char				*ft_substr(const char *s, unsigned int start, size_t len);
 
 #endif

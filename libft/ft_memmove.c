@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 19:13:00 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/06 19:55:37 by yjung            ###   ########.fr       */
+/*   Updated: 2020/10/10 00:57:33 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,11 @@ void	*ft_memmove(void *dst, const char *src, size_t n)
 	n_src = (unsigned char *)src;
 	if (dst == NULL && src == NULL)
 		return (0);
-	i = 0;
+	i = -1;
 	if (n_dst <= n_src)
 	{
-		while (i < n)
-		{
+		while (++i < n)
 			n_dst[i] = n_src[i];
-			i++;
-		}
 	}
 	else
 	{
