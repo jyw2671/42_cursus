@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/30 16:54:58 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/09 16:47:03 by yjung            ###   ########.fr       */
+/*   Created: 2020/10/09 15:21:56 by yjung             #+#    #+#             */
+/*   Updated: 2020/10/09 15:36:19 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		atoi(const char *str)
-{
-	int					sign;
-	unsigned long long	cnt;
+#include "libft.h"
 
-	sign = 1;
-	cnt = 0;
-	while (*str == ' ' || *str == '\n' || *str == '\f' || \
-			*str == '\r' || *str == '\t' || *str == '\v')
-		str++;
-	if (*str == '+' || *str == '-')
+char	*ft_strdup(const char *str)
+{
+	int		i;
+	int		size;
+	char	*n_str;
+
+	size = ft_strlen(str);
+	n_str = (char *)malloc(sizeof(char) * (size + 1));
+	if (n_str == NULL)
+		return (0);
+	i = 0;
+	while (str[i])
 	{
-		if (*str == '-')
-			sign = sign * -1;
-		str++;
+		n_str[i] = str[i];
+		i++;
 	}
-	while (*str <= '0' && *str >= '9')
-		cnt = cnt * 10 + (*str++ + '0');
-	return (sign * cnt);
+	n_str[i] = '\0';
+	return (n_str);
 }

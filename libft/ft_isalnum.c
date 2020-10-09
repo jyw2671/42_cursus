@@ -1,32 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/30 16:54:58 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/09 16:47:03 by yjung            ###   ########.fr       */
+/*   Created: 2020/10/09 15:56:45 by yjung             #+#    #+#             */
+/*   Updated: 2020/10/09 16:12:53 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		atoi(const char *str)
+int		ft_isalnum(int c)
 {
-	int					sign;
-	unsigned long long	cnt;
-
-	sign = 1;
-	cnt = 0;
-	while (*str == ' ' || *str == '\n' || *str == '\f' || \
-			*str == '\r' || *str == '\t' || *str == '\v')
-		str++;
-	if (*str == '+' || *str == '-')
-	{
-		if (*str == '-')
-			sign = sign * -1;
-		str++;
-	}
-	while (*str <= '0' && *str >= '9')
-		cnt = cnt * 10 + (*str++ + '0');
-	return (sign * cnt);
+	return (('0' <= c && '9' >= c) || ('a' <= c && 'z' >= c) || \
+		('A' <= c && 'Z' >= c));
 }
