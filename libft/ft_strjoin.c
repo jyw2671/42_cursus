@@ -1,24 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/28 16:29:55 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/11 19:29:49 by yjung            ###   ########.fr       */
+/*   Created: 2020/10/11 14:57:01 by yjung             #+#    #+#             */
+/*   Updated: 2020/10/11 18:49:07 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	while (*s != c)
-	{
-		if (*s == 0)
-			return (0);
-		++s;
-	}
-	return ((char *)s);
+	char	*ret;
+	size_t	i;
+	size_t	j;
+	size_t	len;
+
+	if (s1 == NULL || s2 == NULL)
+		return (0);
+	len = ft_strlen(s1) + ft_strlen(s2);
+	ret = (char *)malloc(sizeof(char) * (len + 1));
+	if (ret == NULL)
+		return (0);
+	i = 0;
+	j = 0;
+	while (j < ft_strlen(s1))
+		ret[i++] = s1[j++];
+	j = 0;
+	while (j < ft_strlen(s2))
+		ret[i++] = s2[j++];
+	ret[len] = '\0';
+	return (ret);
 }

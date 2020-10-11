@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 21:41:33 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/10 02:16:24 by yjung            ###   ########.fr       */
+/*   Updated: 2020/10/11 19:29:52 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 		ret[i] = s[start + i];
 		i++;
 	}
+	ret[i] = '\0';
 	return (ret);
 }
