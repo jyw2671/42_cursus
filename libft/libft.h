@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 16:20:17 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/11 17:39:01 by yjung            ###   ########.fr       */
+/*   Updated: 2020/10/13 02:12:00 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,11 @@ void				*ft_calloc(size_t cnt, size_t size);
 char				*ft_substr(const char *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s1, char const *set);
+void				ft_putchar_fd(char c, int fd);
+void				ft_putstr_fd(char *s, int fd);
+void				ft_putendl_fd(char *s, int fd);
+void				ft_putnbr_fd(int n, int fd);
+char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+char				*ft_itoa(int n);
 
 #endif

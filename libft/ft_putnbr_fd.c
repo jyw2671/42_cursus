@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/11 18:31:41 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/12 22:41:25 by yjung            ###   ########.fr       */
+/*   Created: 2020/10/12 20:51:06 by yjung             #+#    #+#             */
+/*   Updated: 2020/10/12 21:15:13 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s1, const char *set)
+void	ft_putnbr_fd(int n, int fd)
 {
-	size_t	i;
-	size_t	j;
-
-	if (s1 == NULL || set == NULL)
-		return (0);
-	i = 0;
-	j = ft_strlen(s1);
-	while (i < j && ft_strchr(set, s1[i]))
-		i++;
-	j--;
-	while (j >= i && ft_strchr(set, s1[j]))
-		j--;
-	return (ft_substr((char *)s1, i, j - i + 1));
+	if (n == -2147483648)
+	{
+		ft_putchar_fd('-', fd);
+		ft_putchar_fd('2', fd);
+		ft_putnbr_fd(147483648, fd);
+	}
+	else if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		ft_putnbr_fd(-n, fd);
+	}
+	else if (n < 10)
+		ft_putchar_fd((char)(n + '0'), fd);
+	else
+	{
+		ft_putnbr_fd((n / 10), fd);
+		ft_putchar_fd((char)((n % 10) + '0'), fd);
+	}
 }
