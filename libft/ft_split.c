@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 20:16:30 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/13 21:45:06 by yjung            ###   ########.fr       */
+/*   Updated: 2020/10/14 17:11:57 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static char		*ft_strdup_len(const char *s, size_t len)
 		ret[i] = s[i];
 		i++;
 	}
-	ret[i] = 0;
+	ret[len] = 0;
 	return (ret);
 }
 
@@ -75,12 +75,13 @@ char			**ft_split(char const *s, char c)
 	size_t	len;
 	size_t	i;
 
-	cnt = ft_cutter(s, c);
-	ret = (char **)malloc(sizeof(char *) * (cnt + 1));
-	if (ret == NULL)
+	if (s == NULL)
 		return (0);
-	i = 0;
-	while (i < cnt)
+	cnt = ft_cutter(s, c);
+	if (!(ret = (char **)malloc(sizeof(char *) * (cnt + 1))))
+		return (0);
+	i = -1;
+	while (++i < cnt)
 	{
 		while (*s && *s == c)
 			s++;
@@ -91,7 +92,6 @@ char			**ft_split(char const *s, char c)
 			return (0);
 		}
 		s += len;
-		i++;
 	}
 	ret[cnt] = 0;
 	return (ret);

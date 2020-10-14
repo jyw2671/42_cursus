@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 16:20:17 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/14 02:02:34 by yjung            ###   ########.fr       */
+/*   Updated: 2020/10/14 16:52:16 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ char				*ft_strchr(const char *s, int c);
 char				*ft_strrchr(const char *s, int c);
 char				*ft_strdup(const char *str);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
-char				*ft_strnstr(const char *big, const char *little, size_t len);
+char				*ft_strnstr(const char *big, const char *little, \
+		size_t len);
 void				ft_bzero(void *b, size_t n);
 void				*ft_memset(void *dst, int c, size_t n);
 void				*ft_memchr(const void *ptr, int cmp, size_t n);
@@ -60,11 +61,13 @@ char				**ft_split(char const *s, char c);
 
 t_list				*ft_lstnew(void *content);
 void				ft_lstadd_front(t_list **lst, t_list *new);
+int					ft_lstsize(t_list *lst);
 t_list				*ft_lstlast(t_list *lst);
 void				ft_lstadd_back(t_list **lst, t_list *new);
 void				ft_lstdelone(t_list *lst, void (*del)(void *));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
-t_list				*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+t_list				*ft_lstmap(t_list *lst, void *(*f)(void *), \
+		void (*del)(void *));
 
 #endif

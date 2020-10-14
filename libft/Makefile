@@ -6,7 +6,7 @@
 #    By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/30 18:45:22 by yjung             #+#    #+#              #
-#    Updated: 2020/10/14 02:00:52 by yjung            ###   ########.fr        #
+#    Updated: 2020/10/14 16:33:43 by yjung            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ SRCS = \
 	ft_strdup.c ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
 	ft_isprint.c ft_tolower.c ft_toupper.c ft_calloc.c ft_substr.c \
 	ft_strjoin.c ft_strtrim.c ft_putchar_fd.c ft_putstr_fd.c \
-	ft_putendl_fd.c ft_putnbr_fd.c ft_strmapi.c ft_itoa.c ft_split.c
+	ft_putendl_fd.c ft_putnbr_fd.c ft_strmapi.c ft_itoa.c ft_split.c \
+	ft_lstsize.c
 
 BSRCS = \
 	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
