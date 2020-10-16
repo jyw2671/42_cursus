@@ -5,42 +5,48 @@
 #                                                     +:+ +:+         +:+      #
 #    By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/10/14 22:16:45 by yjung             #+#    #+#              #
-#    Updated: 2020/10/16 22:44:04 by yjung            ###   ########.fr        #
+#    Created: 2020/09/30 18:45:22 by yjung             #+#    #+#              #
+#    Updated: 2020/10/16 18:18:33 by yjung            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+NAME = libft.a
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 AR = ar crs
 
-OBJ_DIR = ./obj
+OBJ_DIR = ./object
 SRC_DIR = ./src
 INC_DIR = ./include
 
-LIB_O_DIR = ./libft/obj
-LIB_S_DIR = ./libft/src
-LIB_I_DIR = ./libft/include
-
-SRC =
+SRC = \
+	ft_atoi.c ft_strchr.c ft_strlcat.c ft_strlcpy.c ft_strlen.c \
+	ft_strncmp.c ft_strrchr.c ft_strnstr.c ft_memcpy.c ft_memccpy.c \
+	ft_memset.c ft_bzero.c ft_memmove.c ft_memchr.c ft_memcmp.c \
+	ft_strdup.c ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
+	ft_isprint.c ft_tolower.c ft_toupper.c ft_calloc.c ft_substr.c \
+	ft_strjoin.c ft_strtrim.c ft_putchar_fd.c ft_putstr_fd.c \
+	ft_putendl_fd.c ft_putnbr_fd.c ft_strmapi.c ft_itoa.c ft_split.c \
+	ft_lstsize.c ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
+	ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c \
+	ft_lstmap.c
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(notdir $(SRC:.c=.o)))
-LIB_OBJ = $(addprefix $(LIB_O_DIR)/, $(notdir $(LIB_SRC:.c=.o)))
 
-all : $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJ)
+	$(AR) $@ $^
 
-$(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
-	$(CC) $(DFLAG) -I $(INC_DIR) -I $(LIB_I_DIR) -c $< -o $@
+	$(CC) $(CFLAGS) -I $(INC_DIR) -c $< -o $@
 
 clean:
-	$(RM) $(OBJ) $(LIB_OBJ)
+	$(RM) $(OBJ)
 
-fclean: clean
+fclean:	clean
 	$(RM) $(NAME)
 
 re: fclean all
