@@ -6,7 +6,7 @@
 #    By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/30 18:45:22 by yjung             #+#    #+#              #
-#    Updated: 2020/10/16 18:18:33 by yjung            ###   ########.fr        #
+#    Updated: 2020/10/18 02:28:38 by yjung            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,8 @@ clean:
 
 fclean:	clean
 	$(RM) $(NAME)
+	@rmdir -p $(OBJ_DIR)
+	@ranlib $(NAME)
 
 re: fclean all
 

@@ -6,7 +6,7 @@
 #    By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/14 22:16:45 by yjung             #+#    #+#              #
-#    Updated: 2020/10/16 22:44:04 by yjung            ###   ########.fr        #
+#    Updated: 2020/10/18 02:56:45 by yjung            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,17 +31,19 @@ LIB_OBJ = $(addprefix $(LIB_O_DIR)/, $(notdir $(LIB_SRC:.c=.o)))
 
 all : $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) $(LIB_OBJ)
+	$(AR) $@ $^
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
-	@mkdir -p $(OBJ_DIR)
-	$(CC) $(DFLAG) -I $(INC_DIR) -I $(LIB_I_DIR) -c $< -o $@
+	@mkdir -p $(OBJ_DIR) $(LIB_O_DIR)
+	$(CC) $(CFLAG) -I $(INC_DIR) -I $(LIB_I_DIR) -c $< -o $@
 
 clean:
 	$(RM) $(OBJ) $(LIB_OBJ)
 
 fclean: clean
 	$(RM) $(NAME)
+	@ranlib $(NAME)
 
 re: fclean all
 
