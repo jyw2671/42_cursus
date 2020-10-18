@@ -1,13 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_ex_type.c                                 :+:      :+:    :+:   */
+/*   ft_int_printf.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/16 22:01:49 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/16 22:01:51 by yjung            ###   ########.fr       */
+/*   Created: 2020/10/18 17:07:04 by yjung             #+#    #+#             */
+/*   Updated: 2020/10/18 18:06:21 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libftprintf.h"
 
+void	ft_int_printf(const char *format, va_list ap)
+{
+	va_start(ap, format);
+	va_arg(ft_itoa(format), int)
+}

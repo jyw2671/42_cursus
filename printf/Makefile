@@ -6,7 +6,7 @@
 #    By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/14 22:16:45 by yjung             #+#    #+#              #
-#    Updated: 2020/10/18 02:56:45 by yjung            ###   ########.fr        #
+#    Updated: 2020/10/18 22:12:06 by yjung            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,31 +20,42 @@ OBJ_DIR = ./obj
 SRC_DIR = ./src
 INC_DIR = ./include
 
-LIB_O_DIR = ./libft/obj
-LIB_S_DIR = ./libft/src
-LIB_I_DIR = ./libft/include
+LIBFT = libft.a
+LIB_DIR = ./libft
+LIB_FILE = $(LIB_DIR)/$(LIBFT)
+LIB_I_DIR = $(LIB_DIR)/include
 
-SRC =
+SRC = ft_printf.c ft_sprintf.c ft_print.c
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(notdir $(SRC:.c=.o)))
-LIB_OBJ = $(addprefix $(LIB_O_DIR)/, $(notdir $(LIB_SRC:.c=.o)))
 
 all : $(NAME)
 
-$(NAME): $(OBJ) $(LIB_OBJ)
-	$(AR) $@ $^
+$(NAME) : $(LIB_FILE) $(OBJ)
+	$(AR) $@ $(OBJ)
 
-$(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
-	@mkdir -p $(OBJ_DIR) $(LIB_O_DIR)
+$(OBJ_DIR)/%.o : %.c
+	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAG) -I $(INC_DIR) -I $(LIB_I_DIR) -c $< -o $@
 
-clean:
-	$(RM) $(OBJ) $(LIB_OBJ)
+clean : $(LIBFT)_clean
+	$(RM) $(OBJ)
 
-fclean: clean
+fclean : $(LIBFT)_fclean clean
 	$(RM) $(NAME)
-	@ranlib $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+$(LIBFT) : $(LIB_FILE)
+
+$(LIB_FILE) :
+	make -C $(LIB_DIR)
+	@cp $(LIB_FILE) $(NAME)
+
+$(LIBFT)_clean :
+	make -C $(LIB_DIR) clean
+
+$(LIBFT)_fclean :
+	make  -C $(LIB_DIR) fclean
+
+.PHONY: all clean fclean re $(LIBFT) $(LIBFT)_clean $(LIBFT)_fclean
