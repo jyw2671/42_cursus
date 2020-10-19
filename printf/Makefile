@@ -6,7 +6,7 @@
 #    By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/14 22:16:45 by yjung             #+#    #+#              #
-#    Updated: 2020/10/18 22:12:06 by yjung            ###   ########.fr        #
+#    Updated: 2020/10/19 17:48:55 by yjung            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,6 @@ $(LIBFT)_clean :
 	make -C $(LIB_DIR) clean
 
 $(LIBFT)_fclean :
-	make  -C $(LIB_DIR) fclean
+	make -C $(LIB_DIR) fclean
 
 .PHONY: all clean fclean re $(LIBFT) $(LIBFT)_clean $(LIBFT)_fclean
