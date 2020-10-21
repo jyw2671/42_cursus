@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 20:19:22 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/20 22:42:17 by yjung            ###   ########.fr       */
+/*   Updated: 2020/10/21 18:14:22 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int		ft_printf(const char *format, ...);
 char	ft_parse_printf(const char *format, t_set *set);
 char	ft_parse_num(const char *format, t_set *set);
 char	ft_parse_type(const char *format, t_set *set);
+char	**ft_int_set(const char *format, t_set *set);
 int		ft_sprintf(char *out, const char *format, ...);
 
 #endif
