@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 18:20:05 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/21 18:14:29 by yjung            ###   ########.fr       */
+/*   Updated: 2020/10/23 22:33:56 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ int		ft_printf(const char *format, ...)
 	va_start(ap, format);
 	while (*format)
 	{
-		if (*format != '%')
+		while (*format != '%')
 			write(1, format++, 1);
-		else if ((*format == '%') && (*(format + 1) == '%'))
+		if ((*format == '%') && (*(format + 1) == '%'))
 		{
 			write(1, format, 1);
 			format++;
 		}
 		else
-			ft_parse_printf(format, &set);
+			ft_parse_printf(format, &set, ap);
 	}
 	va_end(ap);
 	return (0);

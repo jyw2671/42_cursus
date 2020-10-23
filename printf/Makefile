@@ -6,7 +6,7 @@
 #    By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/14 22:16:45 by yjung             #+#    #+#              #
-#    Updated: 2020/10/21 18:14:34 by yjung            ###   ########.fr        #
+#    Updated: 2020/10/23 22:33:58 by yjung            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ LIB_DIR = ./libft
 LIB_FILE = $(LIB_DIR)/$(LIBFT)
 LIB_I_DIR = $(LIB_DIR)/include
 
-SRC = ft_printf.c ft_sprintf.c ft_print.c
+SRC = ft_printf.c ft_parse_printf.c ft_type_printf.c ft_int_set.c ft_sprintf.c
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(notdir $(SRC:.c=.o)))
 

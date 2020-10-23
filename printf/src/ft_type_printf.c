@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_type.c                                    :+:      :+:    :+:   */
+/*   ft_type_printf.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/20 22:01:33 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/21 18:14:28 by yjung            ###   ########.fr       */
+/*   Created: 2020/10/23 19:03:07 by yjung             #+#    #+#             */
+/*   Updated: 2020/10/23 22:33:52 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-char	ft_parse_type(const char *format, t_set *set)
+void	ft_type_printf(t_set *set, va_list ap)
 {
-	size_t	i;
-
-	if (*format == 'd' || *format == 'i' || *format == 'u')
-		set->type = 'd';
-	else if (*format == 's')
-		set->type = 's';
-	return (format);
+	if ((set->type) == 'd')
+		ft_int_set(&set, ap);
+	if ((set->type) == 'c')
+		ft_char_set(&set, ap);
+	if ((set->type) == 's')
+		ft_str_set(&set, ap);
 }
