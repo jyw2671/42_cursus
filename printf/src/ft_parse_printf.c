@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 22:11:56 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/24 17:36:31 by yjung            ###   ########.fr       */
+/*   Updated: 2020/10/24 22:21:55 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,22 @@ static void	ft_parse_num(char **format, t_set *set)
 	size_t	i;
 
 	i = 0;
-	if (**format != '.' && **format <= '0' && **format >= '9')
+	if (**format != '.' && (**format <= '0' && **format >= '9'))
 	{
 		while (**format != '.' && **format <= '0' && **format >= '9')
-			i = i * 10 + (**format++ - '0');
+			i = i * 10 + (*((*format)++) - '0');
 		set->width = i;
-		(*format)++;
 	}
 	i = 0;
-	if (ft_strchr(format, '.'))
+	if (**format == '.')
 	{
 		(*format)++;
+		while ((**format == '0') && *(*format + 1) == '0')
+			*format++;
+		if ((**format == '0') && (*(*format + 1) >= '1' && *(*format + 1) <= '9'))
+			set->zero_flag = 1;
 		while (**format <= '0' && **format >= '9')
-			i = i * 10 + (**format++ - '0');
+			i = i * 10 + (*((*format)++) - '0');
 		set->precision = i;
 	}
 }
@@ -45,6 +48,14 @@ static int	ft_parse_type(char **format, t_set *set)
 	return (0);
 }
 
+static void	ft_check_space(char **format, t_set *set)
+{
+	if ((set->space_flag == 0) && (*((*format)++) == ' '))
+		set->space_flag = 1;
+	while ((**format == ' ') && !**format)
+		(*format)++;
+}
+
 int			ft_parse_printf(char **format, t_set *set, va_list ap)
 {
 	format++;
@@ -54,8 +65,12 @@ int			ft_parse_printf(char **format, t_set *set, va_list ap)
 		set->lefted = 1;
 	else if (**format == '+')
 		set->sign = 1;
+	else if (**format == ' ')
+		set->space_flag = 1;
 	(*format)++;
-	if (**format == '.' || (**format <= '0' && **format >= '9'))
+	if (**format == ' ')
+		ft_check_space(format, set);
+	if ((**format == '.') || ((**format <= '0') && (**format >= '9')))
 		ft_parse_num(format, set);
 	ft_parse_type(format, set);
 	ft_type_printf(set, ap);
