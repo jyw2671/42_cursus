@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 18:20:05 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/23 22:33:56 by yjung            ###   ########.fr       */
+/*   Updated: 2020/10/24 17:34:24 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		ft_printf(const char *format, ...)
 			format++;
 		}
 		else
-			ft_parse_printf(format, &set, ap);
+			ft_parse_printf(&format, &set, ap);
 	}
 	va_end(ap);
 	return (0);

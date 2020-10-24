@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 14:45:01 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/23 22:33:50 by yjung            ###   ########.fr       */
+/*   Updated: 2020/10/24 17:34:20 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ static size_t	*ft_cmp(t_set *set, va_list ap)
 	return (i);
 }
 
-void			*ft_int_set(t_set *set, va_list ap)
+void			ft_int_set(t_set *set, va_list ap)
 {
 	size_t	i;
 
-	if ((i = ft_cmp(&set, ap)) != 0)
+	if ((i = ft_cmp(set, ap)) != 0)
 }
