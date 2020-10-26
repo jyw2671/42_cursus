@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 22:11:56 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/25 21:09:04 by yjung            ###   ########.fr       */
+/*   Updated: 2020/10/26 22:32:26 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static void	ft_parse_flag(char **format, t_set *set)
 	**format == '+' || **format == ' ')
 	{
 		if (**format == ' ' && *((*format)++))
-			set->space_flag = 1;
+			set->s_flag = 1;
 		else if (**format == '0' && *((*format)++))
-			set->zero_flag = 1;
+			set->z_flag = 1;
 		else if (**format == '-' && *((*format)++))
 			set->lefted = 1;
 		else if (**format == '+' && *((*format)++))
@@ -28,47 +28,53 @@ static void	ft_parse_flag(char **format, t_set *set)
 	}
 }
 
-static void	ft_parse_width(char **format, t_set *set, va_list ap)
+static int	ft_parse_width(char **format, t_set *set, va_list ap)
 {
-	size_t	i;
-
-	i = 0;
 	if (**format == '*' && *((*format)++))
 	{
-		if (va_arg(ap, int) < 0)
-			set->ptr_w = -1;
-		else
-			set->ptr_w = 1;
+		if (!(set->ptr_w_val = va_arg(ap, int)))
+		{
+			if (set->ptr_w_val < 0)
+				set->ptr_w = -set->ptr_w_val;
+			else if (set->ptr_w_val >= 0)
+				set->ptr_w = set->ptr_w_val;
+		}
 	}
 	else
 	{
+		set->wid_cnt = 0;
 		while (**format != '.' && (**format <= '0' && **format >= '9'))
-			i = i * 10 + (*((*format)++) - '0');
-		set->width = i;
+			set->wid_cnt = set->wid_cnt * 10 + (*((*format)++) - '0');
+		set->wid = set->wid_cnt;
 	}
 }
 
 static void	ft_parse_precision(char **format, t_set *set, va_list ap)
 {
-	size_t	i;
-
-	i = 0;
 	if (**format == '*' && *((*format)++))
 	{
-		if (va_arg(ap, int) < 0)
-			set->ptr_p = -1;
-		else
-			set->ptr_p = 1;
+		set->ptr_p_check = 0;
+		if (!(set->ptr_p_val = va_arg(ap, int)))
+		{
+			if (set->ptr_p_val < 0)
+			{
+				set->ptr_p = -set->ptr_p_val;
+				set->ptr_p_check = 1;
+			}
+			else if (set->ptr_p_val >= 0)
+				set->ptr_p = set->ptr_p_val;
+		}
 	}
 	else
 	{
 		if (**format == '0')
-			set->zero_flag = 1;
+			set->z_flag = 1;
 		while ((**format == '0') && *((*format)++) == '0')
-			set->zero_flag = 1;
+			set->z_flag = 1;
+		set->prec_cnt = 0;
 		while (**format <= '0' && **format >= '9')
-			i = i * 10 + (*((*format)++) - '0');
-		set->precision = i;
+			set->prec_cnt = set->prec_cnt * 10 + (*((*format)++) - '0');
+		set->prec = set->prec_cnt;
 	}
 }
 
@@ -82,11 +88,19 @@ static void	ft_parse_type(char **format, t_set *set)
 
 int			ft_parse_printf(char **format, t_set *set, va_list ap)
 {
-	ft_parse_flag(format, set);
-	if (**format == '*' || (**format <= '1' && **format >= '9'))
-		ft_parse_width(format, set, ap);
-	else if (**format == '.' && *((*format)++))
-		ft_parse_precision(format, set, ap);
+	while (**format == '-' || **format == '+' || **format == ' ' || \
+		(**format >= '0' && **format <= '9') || **format == '*')
+	{
+		ft_parse_flag(format, set);
+		if (**format == '*' || (**format <= '1' && **format >= '9'))
+			ft_parse_width(format, set, ap);
+		else if (**format == '.' && *((*format)++))
+			ft_parse_precision(format, set, ap);
+		else if (ft_check_parse(format, set, ap) == 0)
+			return (0);
+		else if (ft_check_parse(format, set, ap) == -1)
+			return (-1);
+	}
 	ft_parse_type(format, set);
 	ft_type_printf(set, ap);
 	return (0);
