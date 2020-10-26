@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 22:11:56 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/26 22:32:26 by yjung            ###   ########.fr       */
+/*   Updated: 2020/10/26 22:57:35 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	ft_parse_width(char **format, t_set *set, va_list ap)
 	else
 	{
 		set->wid_cnt = 0;
-		while (**format != '.' && (**format <= '0' && **format >= '9'))
+		while (**format != '.' && (**format >= '0' && **format <= '9'))
 			set->wid_cnt = set->wid_cnt * 10 + (*((*format)++) - '0');
 		set->wid = set->wid_cnt;
 	}
@@ -72,7 +72,7 @@ static void	ft_parse_precision(char **format, t_set *set, va_list ap)
 		while ((**format == '0') && *((*format)++) == '0')
 			set->z_flag = 1;
 		set->prec_cnt = 0;
-		while (**format <= '0' && **format >= '9')
+		while (**format >= '0' && **format <= '9')
 			set->prec_cnt = set->prec_cnt * 10 + (*((*format)++) - '0');
 		set->prec = set->prec_cnt;
 	}
@@ -89,10 +89,12 @@ static void	ft_parse_type(char **format, t_set *set)
 int			ft_parse_printf(char **format, t_set *set, va_list ap)
 {
 	while (**format == '-' || **format == '+' || **format == ' ' || \
-		(**format >= '0' && **format <= '9') || **format == '*')
+	(**format >= '0' && **format <= '9') || **format == '*')
 	{
-		ft_parse_flag(format, set);
-		if (**format == '*' || (**format <= '1' && **format >= '9'))
+		if (**format == '0' || **format == '-' || \
+		**format == '+' || **format == ' ')
+			ft_parse_flag(format, set);
+		else if (**format == '*' || (**format >= '1' && **format <= '9'))
 			ft_parse_width(format, set, ap);
 		else if (**format == '.' && *((*format)++))
 			ft_parse_precision(format, set, ap);
