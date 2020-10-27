@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 22:11:56 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/26 22:59:24 by yjung            ###   ########.fr       */
+/*   Updated: 2020/10/27 22:33:02 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,15 @@ static int	ft_parse_width(char **format, t_set *set, va_list ap)
 {
 	if (**format == '*' && *((*format)++))
 	{
-		if (!(set->ptr_w_val = va_arg(ap, int)))
+		set->ast_w_val = va_arg(ap, int);
+		set->ast_cnt++;
+		if (set->ast_w_val < 0)
 		{
-			if (set->ptr_w_val < 0)
-				set->ptr_w = -set->ptr_w_val;
-			else if (set->ptr_w_val >= 0)
-				set->ptr_w = set->ptr_w_val;
+			set->wid = -set->ast_w_val;
+			set->lefted = 1;
 		}
+		else if (set->ast_w_val >= 0)
+			set->wid = set->ast_w_val;
 	}
 	else
 	{
@@ -53,17 +55,15 @@ static void	ft_parse_precision(char **format, t_set *set, va_list ap)
 {
 	if (**format == '*' && *((*format)++))
 	{
-		set->ptr_p_check = 0;
-		if (!(set->ptr_p_val = va_arg(ap, int)))
+		set->ast_p_check = 0;
+		set->ast_p_val = va_arg(ap, int);
+		if (set->ast_p_val < 0)
 		{
-			if (set->ptr_p_val < 0)
-			{
-				set->ptr_p = -set->ptr_p_val;
-				set->ptr_p_check = 1;
-			}
-			else if (set->ptr_p_val >= 0)
-				set->ptr_p = set->ptr_p_val;
+			set->prec = -set->ast_p_val;
+			set->ast_p_check = 1;
 		}
+		else if (set->ast_p_val >= 0)
+			set->prec = set->ast_p_val;
 	}
 	else
 	{
@@ -72,6 +72,8 @@ static void	ft_parse_precision(char **format, t_set *set, va_list ap)
 		while ((**format == '0') && *((*format)++) == '0')
 			set->z_flag = 1;
 		set->prec_cnt = 0;
+		if (**format >= '1' && **format <= '9')
+			set->ast_p_check = 0;
 		while (**format >= '0' && **format <= '9')
 			set->prec_cnt = set->prec_cnt * 10 + (*((*format)++) - '0');
 		set->prec = set->prec_cnt;
@@ -80,10 +82,12 @@ static void	ft_parse_precision(char **format, t_set *set, va_list ap)
 
 static void	ft_parse_type(char **format, t_set *set)
 {
-	if (**format == 'd' || **format == 'i' || **format == 'u')
-		set->type = 'd';
-	else if (**format == 's')
-		set->type = 's';
+	if (**format == "d" || **format == "i")
+		set->type = "d";
+	else if (**format == "c")
+		set->type = "c";
+	else if (**format == "s")
+		set->type = "s";
 }
 
 int			ft_parse_printf(char **format, t_set *set, va_list ap)

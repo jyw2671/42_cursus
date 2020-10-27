@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 19:03:07 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/26 22:59:25 by yjung            ###   ########.fr       */
+/*   Updated: 2020/10/27 22:33:01 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	ft_type_printf(t_set *set, va_list ap)
 {
-	if ((set->type) == 'd')
+	if ((set->type) == "d")
 		ft_int_set(set, ap);
-	if ((set->type) == 'c')
+	if ((set->type) == "c")
 		ft_char_set(set, ap);
-	if ((set->type) == 's')
+	if ((set->type) == "s")
 		ft_str_set(set, ap);
 }
