@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 20:19:22 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/27 22:32:53 by yjung            ###   ########.fr       */
+/*   Updated: 2020/10/28 06:23:30 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct		s_set
 {
 	unsigned int	val;
 	int				val_sign;
+	int				val_tmp;
 	 // arg로 받은 인수 양수 음수 판별
 	int				val_len;
 	int				p_len;
@@ -38,15 +39,15 @@ typedef struct		s_set
 	unsigned int	prec;
 	int				prec_cnt;
 	char			type;
-	unsigned int	tmp_i;
+	int				tmp_i;
 	char			tmp_c;
 }					t_set;
 
 int		ft_printf(const char *format, ...);
-int		ft_parse_printf(char **format, t_set *set, va_list ap);
+int		ft_parse_printf(const char **format, t_set *set, va_list ap);
 void	ft_type_printf(t_set *set, va_list ap);
-int		ft_check_parse(char **format, t_set *set, va_list ap);
+int		ft_check_parse(const char **format, t_set *set, va_list ap);
 void	ft_int_set(t_set *set, va_list ap);
-int		ft_sprintf(char *out, const char *format, ...);
+void	ft_int_print(t_set *set);
 
 #endif

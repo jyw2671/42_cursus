@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 19:58:37 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/27 22:32:59 by yjung            ###   ########.fr       */
+/*   Updated: 2020/10/28 06:23:32 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,14 @@ static void	ft_percent_print(t_set *set)
 	}
 }
 
-static int	ft_check_percent(char **format, t_set *set)
+int			ft_check_parse(const char **format, t_set *set, va_list ap)
 {
-	if (set->wid != 0)
-		ft_percent_print(set);
-	else if (set->wid == 0 && *((*format)++))
+	if (**format == '%' && *((*format)++))
 	{
-		write(1, "%", 1);
-		return (0);
+		if (set->wid != 0)
+			ft_percent_print(set);
+		else if (set->wid == 0 && *((*format)++))
+			write(1, "%", 1);
 	}
 	return (0);
-}
-
-int			ft_check_parse(char **format, t_set *set, va_list ap)
-{
-	if (**format == '%')
-	{
-		ft_check_percent(format, set);
-		return (0);
-	}
 }

@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 18:20:05 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/27 22:32:56 by yjung            ###   ########.fr       */
+/*   Updated: 2020/10/28 06:23:25 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	ft_rm_set(t_set *set)
 	set->wid_cnt = 0;
 	set->prec = 0;
 	set->prec_cnt = 0;
-	set->type = "";
+	set->type = '\0';
 }
 
 int			ft_printf(const char *format, ...)
@@ -42,11 +42,11 @@ int			ft_printf(const char *format, ...)
 	while (*format)
 	{
 		ft_rm_set(&set);
-		while (*format != '%')
+		while (*format && *format != '%')
 			write(1, format++, 1);
-		if ((*format == '%') && (*(format + 1) == '%'))
+		if (*format && (*format == '%') && (*(format + 1) == '%'))
 			write(1, format++, 1);
-		else if (*(format++) == '%')
+		else if (*format && *(format++) == '%')
 			ft_parse_printf(&format, &set, ap);
 	}
 	va_end(ap);

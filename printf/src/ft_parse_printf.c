@@ -6,13 +6,13 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 22:11:56 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/27 22:33:02 by yjung            ###   ########.fr       */
+/*   Updated: 2020/10/28 06:23:26 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static void	ft_parse_flag(char **format, t_set *set)
+static void	ft_parse_flag(const char **format, t_set *set)
 {
 	while (**format == '0' || **format == '-' || \
 	**format == '+' || **format == ' ')
@@ -28,7 +28,7 @@ static void	ft_parse_flag(char **format, t_set *set)
 	}
 }
 
-static int	ft_parse_width(char **format, t_set *set, va_list ap)
+static void	ft_parse_width(const char **format, t_set *set, va_list ap)
 {
 	if (**format == '*' && *((*format)++))
 	{
@@ -51,7 +51,7 @@ static int	ft_parse_width(char **format, t_set *set, va_list ap)
 	}
 }
 
-static void	ft_parse_precision(char **format, t_set *set, va_list ap)
+static void	ft_parse_precision(const char **format, t_set *set, va_list ap)
 {
 	if (**format == '*' && *((*format)++))
 	{
@@ -80,17 +80,17 @@ static void	ft_parse_precision(char **format, t_set *set, va_list ap)
 	}
 }
 
-static void	ft_parse_type(char **format, t_set *set)
+static void	ft_parse_type(const char **format, t_set *set)
 {
-	if (**format == "d" || **format == "i")
-		set->type = "d";
-	else if (**format == "c")
-		set->type = "c";
-	else if (**format == "s")
-		set->type = "s";
+	if (**format == 'd' || **format == 'i')
+		set->type = 'd';
+	else if (**format == 'c')
+		set->type = 'c';
+	else if (**format == 's')
+		set->type = 's';
 }
 
-int			ft_parse_printf(char **format, t_set *set, va_list ap)
+int			ft_parse_printf(const char **format, t_set *set, va_list ap)
 {
 	while (**format == '-' || **format == '+' || **format == ' ' || \
 	(**format >= '0' && **format <= '9') || **format == '*')
@@ -102,10 +102,11 @@ int			ft_parse_printf(char **format, t_set *set, va_list ap)
 			ft_parse_width(format, set, ap);
 		else if (**format == '.' && *((*format)++))
 			ft_parse_precision(format, set, ap);
-		else if (ft_check_parse(format, set, ap) == 0)
+		else if (**format == '%')
+		{
+			ft_check_parse(format, set, ap);
 			return (0);
-		else if (ft_check_parse(format, set, ap) == -1)
-			return (-1);
+		}
 	}
 	ft_parse_type(format, set);
 	ft_type_printf(set, ap);
