@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 18:20:05 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/28 06:23:25 by yjung            ###   ########.fr       */
+/*   Updated: 2020/10/29 04:45:21 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	ft_rm_set(t_set *set)
 {
 	set->val = 0;
 	set->val_sign = 0;
+	set->sign_cnt = 0;
 	set->val_len = 0;
 	set->p_len = 0;
 	set->z_flag = 0;
@@ -23,14 +24,12 @@ static void	ft_rm_set(t_set *set)
 	set->lefted = 0;
 	set->sign = 0;
 	set->ast_cnt = 0;
-	set->ast_w_val = 0;
 	set->ast_p_check = 0;
-	set->ast_p_val = 0;
 	set->wid = 0;
 	set->wid_cnt = 0;
 	set->prec = 0;
 	set->prec_cnt = 0;
-	set->type = '\0';
+	set->prec_com = 0;
 }
 
 int			ft_printf(const char *format, ...)
