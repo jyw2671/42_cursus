@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 14:45:01 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/29 04:45:18 by yjung            ###   ########.fr       */
+/*   Updated: 2020/10/29 19:19:02 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void		ft_int_num(t_set *set)
 	while (--set->tmp_i > 0)
 		set->tmp_l *= 10;
 	if (set->sign == 0 && set->lefted == 0 && set->s_flag == 0 && \
-	set->z_flag == 0 && set->sign_cnt != 0 && set->val_len >= set->prec)
+	set->z_flag == 0 && set->sign_cnt != 0 && (set->val_len > set->prec))
 		write(1, "-", 1);
 	while (set->tmp_l > 0)
 	{
@@ -108,7 +108,7 @@ void		ft_int_set(t_set *set, va_list ap)
 	else
 		set->val = set->tmp_i;
 	ft_cnt_check(set);
-	if (set->cnt != 0)
+	if (set->cnt != 0 && !(set->prec_com != 0 && set->val == 0))
 	{
 		if (set->val_sign != 0)
 			write(1, "-", 1);

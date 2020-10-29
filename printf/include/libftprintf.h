@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 20:19:22 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/29 04:45:17 by yjung            ###   ########.fr       */
+/*   Updated: 2020/10/29 22:11:31 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct		s_set
 	unsigned int	tmp_u;
 	long long int	tmp_l;
 	char			tmp_c;
+	char			*tmp_s;
 }					t_set;
 
 int		ft_printf(const char *format, ...);
@@ -56,5 +57,8 @@ void	ft_int_prec(t_set *set);
 void	ft_int_print_prec(t_set *set);
 void	ft_print_nflag(t_set *set);
 void	ft_int_print(t_set *set);
+void	print_sturct(t_set *set);
+void	ft_char_set(t_set *set, va_list ap);
+void	ft_str_set(t_set *set, va_list ap);
 
 #endif
