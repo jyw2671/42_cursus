@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 20:19:22 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/29 22:24:57 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/02 21:06:25 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,10 @@ typedef struct		s_set
 
 int		ft_printf(const char *format, ...);
 int		ft_parse_printf(const char **format, t_set *set, va_list ap);
-// void	ft_type_printf(t_set *set, va_list ap);
 int		ft_check_parse(const char **format, t_set *set, va_list ap);
-void	ft_int_set(t_set *set, va_list ap);
+int		ft_str_zero_check(t_set *set);
+void	ft_int_check(const char **format, t_set *set, va_list ap);
+void	ft_int_set(t_set *set);
 void	ft_int_num(t_set *set);
 void	ft_int_prec(t_set *set);
 void	ft_int_print_prec(t_set *set);

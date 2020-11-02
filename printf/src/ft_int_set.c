@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 14:45:01 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/29 19:19:02 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/02 20:00:53 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,12 +101,8 @@ void		ft_int_num(t_set *set)
 	}
 }
 
-void		ft_int_set(t_set *set, va_list ap)
+void		ft_int_set(t_set *set)
 {
-	if ((set->tmp_i = va_arg(ap, int)) < 0 && set->val_sign++ == 0)
-		set->val = -set->tmp_i;
-	else
-		set->val = set->tmp_i;
 	ft_cnt_check(set);
 	if (set->cnt != 0 && !(set->prec_com != 0 && set->val == 0))
 	{

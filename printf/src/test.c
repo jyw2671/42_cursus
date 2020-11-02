@@ -3,10 +3,8 @@
 
 int	main(void)
 {
-	printf("%--   ++++10.2s", "str");
+	printf("%u", 4294967295u);
 	return (0);
 }
 
 
-// precision은 가변인자 길이와 비교
-// -

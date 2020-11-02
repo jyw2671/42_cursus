@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 22:11:56 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/29 22:25:03 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/02 21:06:27 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,14 @@ static void	ft_parse_precision(const char **format, t_set *set, va_list ap)
 	{
 		set->ast_p_check = 0;
 		set->tmp_i = va_arg(ap, int);
-		if (set->tmp_i < 0)
-		{
+		if (set->tmp_i < 0 && (set->ast_p_check++) > -1)
 			set->prec = -set->tmp_i;
-			set->ast_p_check = 1;
-		}
 		else if (set->tmp_i >= 0)
 			set->prec = set->tmp_i;
 	}
 	else
 	{
-		set->prec_com++;
+		set->prec_com = 1;
 		while ((**format == '0') && **format == '0')
 			(*format)++;
 		if (**format >= '1' && **format <= '9')
@@ -75,18 +72,19 @@ static void	ft_parse_precision(const char **format, t_set *set, va_list ap)
 			set->prec_cnt = 0;
 			while (**format >= '0' && **format <= '9')
 				set->prec_cnt = set->prec_cnt * 10 + (*((*format)++) - '0');
+			set->prec = set->prec_cnt;
+			set->ast_p_check = 0;
 		}
-		set->prec = set->prec_cnt;
 	}
 }
 
 static void	ft_parse_type(const char **format, t_set *set, va_list ap)
 {
 	if (**format == 'd' || **format == 'i' || **format == 'c' || \
-	**format == 's')
+	**format == 's' || **format == 'u')
 	{
-		if (**format == 'd' || **format == 'i')
-			ft_int_set(set, ap);
+		if (**format == 'd' || **format == 'i' || **format == 'u')
+			ft_int_check(format, set, ap);
 		else if (**format == 'c')
 			ft_char_set(set, ap);
 		else if (**format == 's')

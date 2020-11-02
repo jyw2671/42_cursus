@@ -6,19 +6,104 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 21:15:30 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/29 22:24:57 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/02 21:06:23 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 #include <stdio.h>
 
-static void	ft_parse_arg(t_set *set, va_list ap)
+static void	ft_str_flag(t_set *set)
 {
-	set->tmp_s = va_arg(ap, char *);
-	set->val_len = ft_strlen(set->tmp_s);
+	if (set->lefted != 0)
+	{
+		while (set->cmp < set->tmp_i)
+			write(1, &set->tmp_s[set->cmp++], 1);
+		while ((set->cnt - set->tmp_i) > 0 && (set->cnt--) > 0)
+			write(1, " ", 1);
+	}
+	else if (set->lefted == 0 && set->z_flag != 0)
+	{
+		while ((set->cnt - set->tmp_i) > 0 && (set->cnt--) > 0)
+			write(1, "0", 1);
+		while (set->cmp < set->tmp_i)
+			write(1, &set->tmp_s[set->cmp++], 1);
+	}
+}
+
+static void	ft_str_wid(t_set *set)
+{
+	set->cmp = 0;
+	if (set->lefted != 0 || set->z_flag != 0)
+	{
+		set->tmp_i = set->val_len;
+		set->cnt = set->wid;
+		ft_str_flag(set);
+	}
+	else
+	{
+		while ((set->wid - set->val_len) > 0 && (set->wid--) > 0)
+			write(1, " ", 1);
+		while (set->cmp < set->val_len)
+			write(1, &set->tmp_s[set->cmp++], 1);
+	}
+}
+
+static void	ft_str_val_len(t_set *set)
+{
+	set->cmp = 0;
+	set->tmp_i = set->prec;
+	if (set->wid > set->tmp_i)
+		set->cnt = set->wid;
+	else
+		set->cnt = set->tmp_i;
+	if (set->lefted != 0 || set->z_flag != 0)
+		ft_str_flag(set);
+	else
+	{
+		while ((set->cnt - set->tmp_i) > 0 && (set->cnt--) > 0)
+			write(1, " ", 1);
+		while (set->cmp < set->tmp_i)
+			write(1, &set->tmp_s[set->cmp++], 1);
+	}
+}
+
+static void	ft_str_prec(t_set *set)
+{
+	set->cmp = 0;
+	set->tmp_i = set->val_len;
+	if (set->wid > set->tmp_i)
+		set->cnt = set->wid;
+	else
+		set->cnt = set->tmp_i;
+	if (set->lefted != 0 || set->z_flag != 0)
+		ft_str_flag(set);
+	else
+	{
+		while ((set->cnt - set->tmp_i) > 0 && (set->cnt--) > 0)
+			write(1, " ", 1);
+		while (set->cmp < set->tmp_i)
+			write(1, &set->tmp_s[set->cmp++], 1);
+	}
 }
 
 void		ft_str_set(t_set *set, va_list ap)
 {
+	set->tmp_s = va_arg(ap, char *);
+	if (ft_str_zero_check(set) == -1)
+		return ;
+	set->val_len = ft_strlen(set->tmp_s);
+	if (set->prec <= set->val_len && set->prec != 0)
+		ft_str_val_len(set);
+	else if (set->prec > set->val_len && set->prec != 0)
+		ft_str_prec(set);
+	else if (set->prec == 0 && set->val_len < set->wid)
+		ft_str_wid(set);
+	else
+	{
+		set->cmp = 0;
+		set->tmp_i = set->val_len;
+		while (set->cmp < set->tmp_i)
+			write(1, &set->tmp_s[set->cmp++], 1);
+	}
 }
