@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 22:11:56 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/02 21:06:27 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/03 16:05:15 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	ft_parse_flag(const char **format, t_set *set)
 {
 	while (**format == '0' || **format == '-' || \
-	**format == '+' || **format == ' ')
+	**format == '+' || **format == ' ' || **format == '#')
 	{
 		if (**format == ' ' && *((*format)++))
 			set->s_flag = 1;
@@ -25,6 +25,8 @@ static void	ft_parse_flag(const char **format, t_set *set)
 			set->lefted = 1;
 		else if (**format == '+' && *((*format)++))
 			set->sign = 1;
+		else if (**format == '#' && *((*format)++))
+			set->hash = 2;
 	}
 }
 
@@ -81,7 +83,7 @@ static void	ft_parse_precision(const char **format, t_set *set, va_list ap)
 static void	ft_parse_type(const char **format, t_set *set, va_list ap)
 {
 	if (**format == 'd' || **format == 'i' || **format == 'c' || \
-	**format == 's' || **format == 'u')
+	**format == 's' || **format == 'u' || **format == 'x' || **format == 'X')
 	{
 		if (**format == 'd' || **format == 'i' || **format == 'u')
 			ft_int_check(format, set, ap);
@@ -89,6 +91,8 @@ static void	ft_parse_type(const char **format, t_set *set, va_list ap)
 			ft_char_set(set, ap);
 		else if (**format == 's')
 			ft_str_set(set, ap);
+		else if (**format == 'x' || **format == 'X')
+			ft_hex_set(format, set, ap);
 		(*format)++;
 	}
 }
@@ -96,10 +100,11 @@ static void	ft_parse_type(const char **format, t_set *set, va_list ap)
 int			ft_parse_printf(const char **format, t_set *set, va_list ap)
 {
 	while (**format == '-' || **format == '+' || **format == ' ' || \
-	(**format >= '0' && **format <= '9') || **format == '*' || **format == '.')
+	**format == '#' || (**format >= '0' && **format <= '9') || \
+	**format == '*' || **format == '.')
 	{
 		if (**format == '0' || **format == '-' || \
-		**format == '+' || **format == ' ')
+		**format == '+' || **format == ' ' || **format == '#')
 			ft_parse_flag(format, set);
 		else if (**format == '*' || (**format >= '1' && **format <= '9'))
 			ft_parse_width(format, set, ap);

@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 20:19:22 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/02 21:06:25 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/03 16:05:17 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,20 @@ typedef struct		s_set
 	int				s_flag;
 	int				lefted;
 	int				sign;
+	int				hash;
 	int				ast_cnt;
 	// va_arg값 저장(va_arg는 파일 디스크립터(FD)라 한번 나오는순간 값을 미리 저장해두어야함)
 	int				ast_p_check; //ast_p 일 때 음수이면 아예 처리 안해주기위해서 판별 구조체
-	unsigned int	wid;
+	int				wid;
 	int				wid_cnt; //int 변형 (size_t i 대신)
-	unsigned int	prec;
+	int				prec;
 	int				prec_cnt;
 	int				prec_com;
 	int				cnt;
 	int				cmp;
 	int				tmp_i;
 	unsigned int	tmp_u;
+	unsigned int	tmp_u1;
 	long long int	tmp_l;
 	char			tmp_c;
 	char			*tmp_s;
@@ -61,5 +63,8 @@ void	ft_int_print(t_set *set);
 void	print_sturct(t_set *set);
 void	ft_char_set(t_set *set, va_list ap);
 void	ft_str_set(t_set *set, va_list ap);
+void	ft_hex_set(const char **format, t_set *set, va_list ap);
+void	ft_hex_cnt(t_set *set);
+void	ft_hex_itoa(t_set *set);
 
 #endif
