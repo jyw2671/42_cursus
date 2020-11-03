@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 20:19:22 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/03 16:05:17 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/03 22:06:45 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct		s_set
 	unsigned int	val;
 	int				val_sign;
 	int				val_tmp;
+	unsigned long	val_ul;
 	int				sign_cnt;
 	 // arg로 받은 인수 양수 음수 판별
 	int				val_len;
@@ -44,11 +45,14 @@ typedef struct		s_set
 	int				tmp_i;
 	unsigned int	tmp_u;
 	unsigned int	tmp_u1;
+	unsigned long	tmp_ul;
+	unsigned long	tmp_ul1;
 	long long int	tmp_l;
 	char			tmp_c;
 	char			*tmp_s;
 }					t_set;
 
+// void	print_sturct(t_set *set);
 int		ft_printf(const char *format, ...);
 int		ft_parse_printf(const char **format, t_set *set, va_list ap);
 int		ft_check_parse(const char **format, t_set *set, va_list ap);
@@ -64,7 +68,10 @@ void	print_sturct(t_set *set);
 void	ft_char_set(t_set *set, va_list ap);
 void	ft_str_set(t_set *set, va_list ap);
 void	ft_hex_set(const char **format, t_set *set, va_list ap);
-void	ft_hex_cnt(t_set *set);
 void	ft_hex_itoa(t_set *set);
+void	ft_hash_flag(t_set *set);
+void	ft_ptr_set(t_set *set, va_list ap);
+void	ft_ptr_itoa(t_set *set);
+void	ft_ptr_hash_flag(t_set *set);
 
 #endif

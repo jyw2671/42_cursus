@@ -6,11 +6,12 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 22:11:56 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/03 16:05:15 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/03 23:11:17 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+#include <stdio.h>
 
 static void	ft_parse_flag(const char **format, t_set *set)
 {
@@ -83,7 +84,8 @@ static void	ft_parse_precision(const char **format, t_set *set, va_list ap)
 static void	ft_parse_type(const char **format, t_set *set, va_list ap)
 {
 	if (**format == 'd' || **format == 'i' || **format == 'c' || \
-	**format == 's' || **format == 'u' || **format == 'x' || **format == 'X')
+	**format == 's' || **format == 'u' || **format == 'x' || **format == 'X' \
+	|| **format == 'p')
 	{
 		if (**format == 'd' || **format == 'i' || **format == 'u')
 			ft_int_check(format, set, ap);
@@ -93,6 +95,8 @@ static void	ft_parse_type(const char **format, t_set *set, va_list ap)
 			ft_str_set(set, ap);
 		else if (**format == 'x' || **format == 'X')
 			ft_hex_set(format, set, ap);
+		else if (**format == 'p')
+			ft_ptr_set(set, ap);
 		(*format)++;
 	}
 }
@@ -110,11 +114,11 @@ int			ft_parse_printf(const char **format, t_set *set, va_list ap)
 			ft_parse_width(format, set, ap);
 		else if (**format == '.' && *((*format)++))
 			ft_parse_precision(format, set, ap);
-		else if (**format == '%')
-		{
-			ft_check_parse(format, set, ap);
-			return (0);
-		}
+	}
+	if (**format == '%')
+	{
+		ft_check_parse(format, set, ap);
+		return (0);
 	}
 	ft_parse_type(format, set, ap);
 	return (0);

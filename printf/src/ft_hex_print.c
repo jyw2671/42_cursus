@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 12:43:57 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/03 16:05:15 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/03 23:11:14 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,20 +54,6 @@ static void	ft_hex_print_l(t_set *set)
 		write(1, "F", 1);
 }
 
-void		ft_hex_cnt(t_set *set)
-{
-	set->val = set->tmp_u;
-	while (set->val > 0 && (set->val_len++) > -1)
-		set->val /= 16;
-	set->tmp_u1 = 1;
-	if (set->tmp_u != 0)
-		set->cnt = set->val_len;
-	else
-		set->cnt = 1;
-	while ((--set->val_len) > 0)
-		set->tmp_u1 *= 16;
-}
-
 void		ft_hash_flag(t_set *set)
 {
 	if (set->hash == 2 && set->tmp_u != 0 && set->prec == 0 && \
@@ -76,9 +62,10 @@ void		ft_hash_flag(t_set *set)
 	if (set->hash == 2 && set->tmp_u != 0)
 	{
 		if (set->hash == 2 && set->cmp == 1)
-			write(1, "0x", 2);
-		else if (set->hash == 2)
 			write(1, "0X", 2);
+		else if (set->hash == 2)
+			write(1, "0x", 2);
+		write(1, "123", 3);
 	}
 }
 
@@ -97,9 +84,9 @@ void		ft_hex_itoa(t_set *set)
 			set->tmp_u %= set->tmp_u1;
 			set->tmp_u1 /= 16;
 			if (set->cmp == 1)
-				ft_hex_print_s(set);
-			else
 				ft_hex_print_l(set);
+			else
+				ft_hex_print_s(set);
 		}
 	}
 }

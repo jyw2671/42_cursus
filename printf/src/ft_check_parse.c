@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 19:58:37 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/03 14:27:09 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/03 21:50:45 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,23 @@
 
 static void	ft_percent_print(t_set *set)
 {
-	if (set->lefted != 0 && !(set->wid--))
-		write(1, "%", 1);
-	while (set->wid > 0)
+	if (set->lefted != 0 && (set->wid--) > 0)
 	{
-		if (set->z_flag != 0 && set->s_flag != 0 && set->lefted == 0)
-		{
-			while (set->wid > 1 && !(set->wid--))
-				write(1, "0", 1);
-			write(1, "%", 1);
-		}
-		else
-		{
-			while (set->wid > 1 && !(set->wid--))
-				write(1, " ", 1);
-			write(1, "%", 1);
-		}
+		write(1, "%", 1);
+		while (set->wid > 0 && (set->wid--) > 0)
+			write(1, " ", 1);
+	}
+	else if (set->z_flag != 0 && set->lefted == 0)
+	{
+		while (set->wid > 1 && (set->wid--) > 0)
+			write(1, "0", 1);
+		write(1, "%", 1);
+	}
+	else
+	{
+		while (set->wid > 1 && (set->wid--) > 0)
+			write(1, " ", 1);
+		write(1, "%", 1);
 	}
 }
 
@@ -37,9 +38,9 @@ int			ft_check_parse(const char **format, t_set *set, va_list ap)
 {
 	if (**format == '%' && *((*format)++))
 	{
-		if (set->wid != 0)
+		if (set->wid > 1)
 			ft_percent_print(set);
-		else if (set->wid == 0 && *((*format)++))
+		else
 			write(1, "%", 1);
 	}
 	return (0);
