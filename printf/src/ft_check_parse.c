@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 19:58:37 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/03 21:50:45 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/04 21:37:47 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,19 @@ static void	ft_percent_print(t_set *set)
 
 int			ft_check_parse(const char **format, t_set *set, va_list ap)
 {
-	if (**format == '%' && *((*format)++))
+	if (set->wid > 1)
 	{
-		if (set->wid > 1)
-			ft_percent_print(set);
-		else
-			write(1, "%", 1);
+		ft_percent_print(set);
+		if (*(*format + 1))
+			(*format)++;
 	}
+	else
+	{
+		write(1, "%", 1);
+		if (*(*format + 1))
+			(*format)++;
+	}
+	if (*(*format + 1))
+		(*format)++;
 	return (0);
 }

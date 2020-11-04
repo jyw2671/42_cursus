@@ -6,16 +6,15 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 03:36:29 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/29 19:18:14 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/04 20:12:42 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include <stdio.h>
 
 void		ft_int_prec(t_set *set)
 {
-	if (set->tmp_i != 0)
+	if (set->cmp != 0)
 	{
 		if (set->val_sign == 1)
 			write(1, "-", 1);
@@ -49,7 +48,7 @@ void		ft_int_print_prec(t_set *set)
 
 void		ft_print_nflag(t_set *set)
 {
-	if (set->prec == 0 && set->wid == 0 && set->val == 0)
+	if (set->prec == 0 && set->wid == 0 && set->val_ul == 0)
 		return ;
 	else if (set->val_sign == 1 && (set->p_len--) > 0)
 		set->sign_cnt++;
@@ -64,7 +63,7 @@ void		ft_print_nflag(t_set *set)
 		while ((set->p_len - set->val_len) > 0 && (set->p_len--) > 0)
 			write(1, " ", 1);
 	}
-	if (set->val == 0 && set->prec == 0 && set->prec_com != 0)
+	if (set->val_ul == 0 && set->prec == 0 && set->prec_com != 0)
 		write(1, " ", 1);
 	else
 		ft_int_num(set);

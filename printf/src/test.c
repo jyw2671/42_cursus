@@ -3,10 +3,8 @@
 
 int	main(void)
 {
-	// int x = 256;
-	// x /= 16;
-	// printf("%d", x);
-	printf("%10.*p", -5, 1);
+	printf("%x", 1231233);
+	// printf("%17llhd", 31111111111111);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 17:03:19 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/03 23:11:09 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/04 18:57:00 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	ft_ptr_wid(t_set *set)
 	}
 	else if (set->lefted == 0 && set->z_flag != 0)
 	{
-		if (set->hash == 2 && set->tmp_u != 0)
+		if (set->hash == 2 && set->ptr_1 != 0)
 			write(1, "0x", 2);
 		while (((set->wid - set->cnt) - set->hash) > 0 && (set->wid--) > 0)
 			write(1, "0", 1);
@@ -64,29 +64,29 @@ static void	ft_ptr_wid(t_set *set)
 
 static void	ft_ptr_cnt(t_set *set)
 {
-	set->tmp_ul = set->val_ul;
-	while (set->tmp_ul > 0)
+	set->ptr_2 = set->ptr_1;
+	while (set->ptr_2 > 0)
 	{
-		set->tmp_ul /= 16;
+		set->ptr_2 /= 16;
 		set->val_len++;
 	}
-	set->tmp_ul1 = 1;
-	if (set->val_ul != 0)
+	set->ptr_3 = 1;
+	if (set->ptr_1 != 0)
 		set->cnt = set->val_len;
 	else
 		set->cnt = 1;
 	while ((--set->val_len) > 0)
-		set->tmp_ul1 *= 16;
+		set->ptr_3 *= 16;
 }
 
 void		ft_ptr_set(t_set *set, va_list ap)
 {
-	set->val_ul = (unsigned long)va_arg(ap, void *);
+	set->ptr_1 = (unsigned long)va_arg(ap, void *);
 	set->hash = 2;
 	if (set->ast_p_check != 0)
 		set->prec = 0;
 	ft_ptr_cnt(set);
-	if (set->prec_com == 1 && set->prec == 0 && set->val_ul == 0)
+	if (set->prec_com == 1 && set->prec == 0 && set->ptr_1 == 0)
 	{
 		while (set->wid > 0 && (set->wid--) > 0)
 			write(1, " ", 1);
@@ -95,5 +95,7 @@ void		ft_ptr_set(t_set *set, va_list ap)
 	if (set->prec_com == 1 || set->prec != 0)
 		ft_ptr_prec(set);
 	else
+	{
 		ft_ptr_wid(set);
+	}
 }

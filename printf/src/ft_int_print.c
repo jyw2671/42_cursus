@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 02:25:35 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/29 17:52:33 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/04 19:53:24 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void		ft_int_print(t_set *set)
 		if (set->val_sign == 1 && (set->p_len--) > 0)
 			set->sign_cnt++;
 		ft_int_print_prec(set);
-		if (set->val == 0 && set->prec == 0 && set->prec_com != 0)
+		if (set->val_ul == 0 && set->prec == 0 && set->prec_com != 0)
 			write(1, " ", 1);
 		else
 			ft_int_num(set);

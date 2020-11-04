@@ -6,7 +6,7 @@
 #    By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/14 22:16:45 by yjung             #+#    #+#              #
-#    Updated: 2020/11/03 21:45:18 by yjung            ###   ########.fr        #
+#    Updated: 2020/11/04 21:37:51 by yjung            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,11 +25,10 @@ LIB_DIR = ./libft
 LIB_FILE = $(LIB_DIR)/$(LIBFT)
 LIB_I_DIR = $(LIB_DIR)/include
 
-SRC = ft_printf.c ft_parse_printf.c ft_check_parse.c \
-	ft_int_set.c ft_int_print.c ft_int_third.c print_struct.c \
+SRC = ft_printf.c ft_parse_printf.c ft_check_parse.c ft_parse_type.c \
+	ft_int_set.c ft_int_print.c ft_int_third.c \
 	ft_char_set.c ft_str_set.c ft_str_zero_check.c ft_int_check.c \
-	ft_hex_set.c ft_hex_print.c ft_ptr_set.c ft_ptr_print.c \
-	print_struct.c
+	ft_hex_set.c ft_hex_print.c ft_ptr_set.c ft_ptr_print.c
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(notdir $(SRC:.c=.o)))
 

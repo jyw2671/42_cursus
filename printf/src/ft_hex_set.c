@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 12:31:17 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/03 23:11:18 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/04 21:37:48 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	ft_hex_wid(t_set *set)
 	}
 	else if (set->lefted == 0 && set->z_flag != 0)
 	{
-		if (set->hash == 2 && set->tmp_u != 0)
+		if (set->hash == 2 && set->val_ul != 0)
 		{
 			if (set->hash == 2 && set->cmp == 1)
 				write(1, "0X", 2);
@@ -67,28 +67,28 @@ static void	ft_hex_wid(t_set *set)
 
 static void	ft_hex_cnt(t_set *set)
 {
-	set->val = set->tmp_u;
+	set->val = set->val_ul;
 	while (set->val > 0 && (set->val_len++) > -1)
 		set->val /= 16;
-	set->tmp_u1 = 1;
-	if (set->tmp_u != 0)
+	set->tmp_1 = 1;
+	if (set->val_ul != 0)
 		set->cnt = set->val_len;
 	else
 		set->cnt = 1;
 	while ((--set->val_len) > 0)
-		set->tmp_u1 *= 16;
+		set->tmp_1 *= 16;
 }
 
 void		ft_hex_set(const char **format, t_set *set, va_list ap)
 {
-	if ((set->tmp_u = va_arg(ap, int)) < 0)
-		return ;
+	set->val_ul = va_arg(ap, int);
+	set->cmp = 0;
 	if (**format == 'X')
 		set->cmp = 1;
-	if (set->hash != 0 && set->tmp_u == 0)
+	if (set->hash != 0 && set->val_ul == 0)
 		set->hash = 0;
 	ft_hex_cnt(set);
-	if (set->prec_com == 1 && set->prec == 0 && set->tmp_u == 0)
+	if (set->prec_com == 1 && set->prec == 0 && set->val_ul == 0)
 	{
 		while (set->wid > 0 && (set->wid--) > 0)
 			write(1, " ", 1);
