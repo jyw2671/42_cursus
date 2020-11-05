@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 22:11:56 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/04 21:43:49 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/05 18:13:24 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static void	ft_parse_width(const char **format, t_set *set, va_list ap)
 
 static void	ft_parse_precision(const char **format, t_set *set, va_list ap)
 {
+	set->prec_com = 1;
 	if (**format == '*' && **format && *((*format)++))
 	{
 		set->ast_p_check = 0;
@@ -64,7 +65,6 @@ static void	ft_parse_precision(const char **format, t_set *set, va_list ap)
 	}
 	else
 	{
-		set->prec_com = 1;
 		while (**format == '0' && *(*format + 1) && *(++(*format)) == '0')
 			(*format)++;
 		if (**format >= '1' && **format <= '9')

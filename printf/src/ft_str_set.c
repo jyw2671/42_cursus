@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 21:15:30 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/04 21:37:46 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/05 18:13:21 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ void		ft_str_set(t_set *set, va_list ap)
 	set->tmp_s = va_arg(ap, char *);
 	if (ft_str_zero_check(set) == -1)
 		return ;
+	if (set->ast_p_check != 0)
+		set->prec = 0;
 	set->val_len = ft_strlen(set->tmp_s);
 	if (set->prec <= set->val_len && set->prec != 0)
 		ft_str_val_len(set);

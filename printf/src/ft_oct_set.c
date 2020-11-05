@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ptr_set.c                                       :+:      :+:    :+:   */
+/*   ft_oct_set.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/03 17:03:19 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/05 21:27:45 by yjung            ###   ########.fr       */
+/*   Created: 2020/11/05 22:19:00 by yjung             #+#    #+#             */
+/*   Updated: 2020/11/05 22:32:32 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static void	ft_ptr_prec(t_set *set)
+static void	ft_oct_prec(t_set *set)
 {
 	if (set->prec < set->cnt)
 		set->prec = set->cnt;
 	if (set->lefted != 0)
 	{
-		ft_ptr_hash_flag(set);
+		ft_oct_hash_flag(set);
 		while ((set->prec - set->cnt) > 0 && (set->cnt++) > 0)
 			write(1, "0", 1);
-		ft_ptr_itoa(set);
+		ft_oct_itoa(set);
 		while (((set->wid - set->prec) - set->hash) > 0 && (set->wid--) > 0)
 			write(1, " ", 1);
 	}
@@ -29,73 +29,67 @@ static void	ft_ptr_prec(t_set *set)
 	{
 		while (((set->wid - set->prec) - set->hash) > 0 && (set->wid--) > 0)
 			write(1, " ", 1);
-		ft_ptr_hash_flag(set);
+		ft_oct_hash_flag(set);
 		while ((set->prec - set->cnt) > 0 && (set->cnt++) > 0)
 			write(1, "0", 1);
-		ft_ptr_itoa(set);
+		ft_oct_itoa(set);
 	}
 }
 
-static void	ft_ptr_wid(t_set *set)
+static void	ft_oct_wid(t_set *set)
 {
 	if (set->lefted != 0)
 	{
-		ft_ptr_hash_flag(set);
-		ft_ptr_itoa(set);
+		ft_oct_itoa(set);
 		while (((set->wid - set->cnt) - set->hash) > 0 && (set->wid--) > 0)
 			write(1, " ", 1);
 	}
 	else if (set->lefted == 0 && set->z_flag != 0)
 	{
-		if (set->hash == 2 && set->ptr_1 != 0)
-			write(1, "0x", 2);
+		if (set->hash != 0 && set->val_ul != 0)
+			write(1, "0", 1);
 		while (((set->wid - set->cnt) - set->hash) > 0 && (set->wid--) > 0)
 			write(1, "0", 1);
-		ft_ptr_itoa(set);
+		ft_oct_itoa(set);
 	}
 	else
 	{
 		while (((set->wid - set->cnt) - set->hash) > 0 && (set->wid--) > 0)
 			write(1, " ", 1);
-		ft_ptr_hash_flag(set);
-		ft_ptr_itoa(set);
+		ft_oct_itoa(set);
 	}
 }
 
-static void	ft_ptr_cnt(t_set *set)
+static void	ft_oct_cnt(t_set *set)
 {
-	set->ptr_2 = set->ptr_1;
-	while (set->ptr_2 > 0)
-	{
-		set->ptr_2 /= 16;
-		set->val_len++;
-	}
-	set->ptr_3 = 1;
-	if (set->ptr_1 != 0)
+	set->val = set->val_ul;
+	while (set->val > 0 && (set->val_len++) > -1)
+		set->val /= 8;
+	set->tmp_1 = 1;
+	if (set->val_ul != 0)
 		set->cnt = set->val_len;
 	else
 		set->cnt = 1;
 	while ((--set->val_len) > 0)
-		set->ptr_3 *= 16;
+		set->tmp_1 *= 8;
 }
 
-void		ft_ptr_set(t_set *set, va_list ap)
+void		ft_oct_set(t_set *set, va_list ap)
 {
-	set->ptr_1 = (unsigned long)va_arg(ap, void *);
-	set->hash = 2;
-	if (set->ast_p_check != 0)
-		set->prec = 0;
-	ft_ptr_cnt(set);
-	if (set->prec_com == 1 && set->prec == 0 && set->ptr_1 == 0)
+	ft_print_ul(set, ap);
+	if (set->hash == 2)
+		set->hash = 1;
+	if (set->hash != 0 && set->val_ul == 0)
+		set->hash = 0;
+	ft_oct_cnt(set);
+	if (set->prec_com == 1 && set->prec == 0 && set->val_ul == 0)
 	{
 		while (set->wid > 0 && (set->wid--) > 0)
 			write(1, " ", 1);
 		return ;
 	}
 	if (set->prec_com == 1 || set->prec != 0)
-		ft_ptr_prec(set);
+		ft_oct_prec(set);
 	else
-	{
-		ft_ptr_wid(set);
-	}
+		ft_oct_wid(set);
 }

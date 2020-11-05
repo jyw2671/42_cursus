@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 12:31:17 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/04 21:37:48 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/05 22:48:22 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void	ft_hex_cnt(t_set *set)
 
 void		ft_hex_set(const char **format, t_set *set, va_list ap)
 {
-	set->val_ul = va_arg(ap, int);
+	ft_print_ul(set, ap);
 	set->cmp = 0;
 	if (**format == 'X')
 		set->cmp = 1;

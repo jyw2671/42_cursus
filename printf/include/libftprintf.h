@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 20:19:22 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/04 21:37:50 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/05 22:48:24 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,23 @@ void	ft_parse_type(const char **format, t_set *set, va_list ap);
 int		ft_check_parse(const char **format, t_set *set, va_list ap);
 int		ft_str_zero_check(t_set *set);
 void	ft_int_check(const char **format, t_set *set, va_list ap);
+void	ft_print_ul(t_set *set, va_list ap);
+void	ft_print_l(t_set *set, va_list ap);
 void	ft_int_set(t_set *set);
 void	ft_int_num(t_set *set);
-void	ft_int_prec(t_set *set);
 void	ft_int_print_prec(t_set *set);
 void	ft_print_nflag(t_set *set);
 void	ft_int_print(t_set *set);
+void	ft_int_prec_com(t_set *set);
+void	ft_int_prec_cmp(t_set *set);
 void	ft_char_set(t_set *set, va_list ap);
 void	ft_str_set(t_set *set, va_list ap);
 void	ft_hex_set(const char **format, t_set *set, va_list ap);
 void	ft_hex_itoa(t_set *set);
 void	ft_hash_flag(t_set *set);
+void	ft_oct_set(t_set *set, va_list ap);
+void	ft_oct_itoa(t_set *set);
+void	ft_oct_hash_flag(t_set *set);
 void	ft_ptr_set(t_set *set, va_list ap);
 void	ft_ptr_itoa(t_set *set);
 void	ft_ptr_hash_flag(t_set *set);

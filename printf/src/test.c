@@ -1,12 +1,21 @@
 #include <stdio.h>
 #include <unistd.h>
+#include <limits.h>
 
 int	main(void)
 {
-	printf("%x", 1231233);
+	// printf("%u", 2147483648);
+	// printf("%+- 06d", 11);
+	printf("%o", 0);
+	// printf("%s\n%s", "l", "ll");
 	// printf("%17llhd", 31111111111111);
 	return (0);
 }
+
+//가변인자가 0일 때
+//		prec 가 wid 보다 우선순위
+//		모든 플래그 다 존재시 +먼저 먹음
+//
 
 // 모든 플래그가 있을 경우 - 먹음, wid 만큼 공백 precision 만큼 0
 // [+][ ][0] 일 경우 0 먹음 wid 만큼

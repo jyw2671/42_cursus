@@ -6,11 +6,28 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 12:43:57 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/04 21:06:30 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/05 22:48:30 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+
+static void	ft_hex_print_zero(t_set *set)
+{
+	if (set->tmp_1 == 1)
+	{
+		write(1, "0", 1);
+		return ;
+	}
+	else
+	{
+		while (set->tmp_1 > 0)
+		{
+			write(1, "0", 1);
+			set->tmp_1 /= 16;
+		}
+	}
+}
 
 static int	ft_hex_print_s(t_set *set)
 {
@@ -31,9 +48,9 @@ static int	ft_hex_print_s(t_set *set)
 		write(1, "e", 1);
 	else if (set->tmp_2 == 15)
 		write(1, "f", 1);
-	if (set->val_ul == 0 && set->tmp_1 == 1)
+	if (set->val_ul == 0 && (set->tmp_2 == 0 || set->tmp_1 == 1))
 	{
-		write(1, "0", 1);
+		ft_hex_print_zero(set);
 		return (1);
 	}
 	return (0);
@@ -58,9 +75,9 @@ static int	ft_hex_print_l(t_set *set)
 		write(1, "E", 1);
 	else if (set->tmp_2 == 15)
 		write(1, "F", 1);
-	if (set->val_ul == 0 && set->tmp_1 == 1)
+	if (set->val_ul == 0 && (set->tmp_2 == 0 || set->tmp_1 == 1))
 	{
-		write(1, "0", 1);
+		ft_hex_print_zero(set);
 		return (1);
 	}
 	return (0);
