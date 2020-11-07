@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 22:19:00 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/05 22:32:32 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/07 16:56:51 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,18 @@ static void	ft_oct_prec(t_set *set)
 	{
 		ft_oct_hash_flag(set);
 		while ((set->prec - set->cnt) > 0 && (set->cnt++) > 0)
-			write(1, "0", 1);
+			set->len += write(1, "0", 1);
 		ft_oct_itoa(set);
 		while (((set->wid - set->prec) - set->hash) > 0 && (set->wid--) > 0)
-			write(1, " ", 1);
+			set->len += write(1, " ", 1);
 	}
 	else
 	{
 		while (((set->wid - set->prec) - set->hash) > 0 && (set->wid--) > 0)
-			write(1, " ", 1);
+			set->len += write(1, " ", 1);
 		ft_oct_hash_flag(set);
 		while ((set->prec - set->cnt) > 0 && (set->cnt++) > 0)
-			write(1, "0", 1);
+			set->len += write(1, "0", 1);
 		ft_oct_itoa(set);
 	}
 }
@@ -42,20 +42,20 @@ static void	ft_oct_wid(t_set *set)
 	{
 		ft_oct_itoa(set);
 		while (((set->wid - set->cnt) - set->hash) > 0 && (set->wid--) > 0)
-			write(1, " ", 1);
+			set->len += write(1, " ", 1);
 	}
 	else if (set->lefted == 0 && set->z_flag != 0)
 	{
 		if (set->hash != 0 && set->val_ul != 0)
-			write(1, "0", 1);
+			set->len += write(1, "0", 1);
 		while (((set->wid - set->cnt) - set->hash) > 0 && (set->wid--) > 0)
-			write(1, "0", 1);
+			set->len += write(1, "0", 1);
 		ft_oct_itoa(set);
 	}
 	else
 	{
 		while (((set->wid - set->cnt) - set->hash) > 0 && (set->wid--) > 0)
-			write(1, " ", 1);
+			set->len += write(1, " ", 1);
 		ft_oct_itoa(set);
 	}
 }
@@ -85,7 +85,7 @@ void		ft_oct_set(t_set *set, va_list ap)
 	if (set->prec_com == 1 && set->prec == 0 && set->val_ul == 0)
 	{
 		while (set->wid > 0 && (set->wid--) > 0)
-			write(1, " ", 1);
+			set->len += write(1, " ", 1);
 		return ;
 	}
 	if (set->prec_com == 1 || set->prec != 0)

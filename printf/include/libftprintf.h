@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 20:19:22 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/05 22:48:24 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/07 21:27:51 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct			s_set
 	unsigned long		ptr_1;
 	unsigned long		ptr_2;
 	unsigned long		ptr_3;
+	int					len;
 	int					val_sign;
 	int					sign_cnt;
 	 // arg로 받은 인수 양수 음수 판별
@@ -37,11 +38,12 @@ typedef struct			s_set
 	int					lefted;
 	int					sign;
 	int					hash;
-	int					ast_p_check; //ast_p 일 때 음수이면 아예 처리 안해주기위해서 판별 구조체
+	int					ast_p_check;
 	int					wid;
 	int					prec;
 	int					prec_com;
-	char				*type;
+	int					type_l;
+	int					type_h;
 //
 	int					cnt;
 	int					cmp;
@@ -50,9 +52,23 @@ typedef struct			s_set
 	char				*tmp_s;
 }						t_set;
 
+typedef struct			s_num
+{
+	union
+	{
+		double			d_val;
+		struct
+		{
+			size_t		frac : 52;
+			size_t		exp : 11;
+			size_t		sign : 1;
+		};
+	};
+}						t_num;
+
 int		ft_printf(const char *format, ...);
 int		ft_parse_printf(const char **format, t_set *set, va_list ap);
-void	ft_parse_lh(const char **format, t_set *set, va_list ap);
+void	ft_parse_ex_type(const char **format, t_set *set, va_list ap);
 void	ft_parse_type(const char **format, t_set *set, va_list ap);
 int		ft_check_parse(const char **format, t_set *set, va_list ap);
 int		ft_str_zero_check(t_set *set);
@@ -77,5 +93,6 @@ void	ft_oct_hash_flag(t_set *set);
 void	ft_ptr_set(t_set *set, va_list ap);
 void	ft_ptr_itoa(t_set *set);
 void	ft_ptr_hash_flag(t_set *set);
+void	ft_float_set(t_set *set, va_list ap);
 
 #endif

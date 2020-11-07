@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 12:31:17 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/05 22:48:22 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/07 16:55:35 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,18 @@ static void	ft_hex_prec(t_set *set)
 	{
 		ft_hash_flag(set);
 		while ((set->prec - set->cnt) > 0 && (set->cnt++) > 0)
-			write(1, "0", 1);
+			set->len += write(1, "0", 1);
 		ft_hex_itoa(set);
 		while (((set->wid - set->prec) - set->hash) > 0 && (set->wid--) > 0)
-			write(1, " ", 1);
+			set->len += write(1, " ", 1);
 	}
 	else
 	{
 		while (((set->wid - set->prec) - set->hash) > 0 && (set->wid--) > 0)
-			write(1, " ", 1);
+			set->len += write(1, " ", 1);
 		ft_hash_flag(set);
 		while ((set->prec - set->cnt) > 0 && (set->cnt++) > 0)
-			write(1, "0", 1);
+			set->len += write(1, "0", 1);
 		ft_hex_itoa(set);
 	}
 }
@@ -42,34 +42,34 @@ static void	ft_hex_wid(t_set *set)
 	{
 		ft_hex_itoa(set);
 		while (((set->wid - set->cnt) - set->hash) > 0 && (set->wid--) > 0)
-			write(1, " ", 1);
+			set->len += write(1, " ", 1);
 	}
 	else if (set->lefted == 0 && set->z_flag != 0)
 	{
 		if (set->hash == 2 && set->val_ul != 0)
 		{
 			if (set->hash == 2 && set->cmp == 1)
-				write(1, "0X", 2);
+				set->len += write(1, "0X", 2);
 			else if (set->hash == 2)
-				write(1, "0x", 2);
+				set->len += write(1, "0x", 2);
 		}
 		while (((set->wid - set->cnt) - set->hash) > 0 && (set->wid--) > 0)
-			write(1, "0", 1);
+			set->len += write(1, "0", 1);
 		ft_hex_itoa(set);
 	}
 	else
 	{
 		while (((set->wid - set->cnt) - set->hash) > 0 && (set->wid--) > 0)
-			write(1, " ", 1);
+			set->len += write(1, " ", 1);
 		ft_hex_itoa(set);
 	}
 }
 
 static void	ft_hex_cnt(t_set *set)
 {
-	set->val = set->val_ul;
-	while (set->val > 0 && (set->val_len++) > -1)
-		set->val /= 16;
+	set->tmp_2 = set->val_ul;
+	while (set->tmp_2 > 0 && (set->val_len++) > -1)
+		set->tmp_2 /= 16;
 	set->tmp_1 = 1;
 	if (set->val_ul != 0)
 		set->cnt = set->val_len;
@@ -91,7 +91,7 @@ void		ft_hex_set(const char **format, t_set *set, va_list ap)
 	if (set->prec_com == 1 && set->prec == 0 && set->val_ul == 0)
 	{
 		while (set->wid > 0 && (set->wid--) > 0)
-			write(1, " ", 1);
+			set->len += write(1, " ", 1);
 		return ;
 	}
 	if (set->prec_com == 1 || set->prec != 0)

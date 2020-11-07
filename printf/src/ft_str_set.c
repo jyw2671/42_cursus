@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 21:15:30 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/05 18:13:21 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/07 17:01:54 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ static void	ft_str_flag(t_set *set)
 	if (set->lefted != 0)
 	{
 		while (set->cmp < set->tmp_1)
-			write(1, &set->tmp_s[set->cmp++], 1);
+			set->len += write(1, &set->tmp_s[set->cmp++], 1);
 		while ((set->cnt - set->tmp_1) > 0 && (set->cnt--) > 0)
-			write(1, " ", 1);
+			set->len += write(1, " ", 1);
 	}
 	else if (set->lefted == 0 && set->z_flag != 0)
 	{
 		while ((set->cnt - set->tmp_1) > 0 && (set->cnt--) > 0)
-			write(1, "0", 1);
+			set->len += write(1, "0", 1);
 		while (set->cmp < set->tmp_1)
-			write(1, &set->tmp_s[set->cmp++], 1);
+			set->len += write(1, &set->tmp_s[set->cmp++], 1);
 	}
 }
 
@@ -42,9 +42,9 @@ static void	ft_str_wid(t_set *set)
 	else
 	{
 		while ((set->wid - set->val_len) > 0 && (set->wid--) > 0)
-			write(1, " ", 1);
+			set->len += write(1, " ", 1);
 		while (set->cmp < set->val_len)
-			write(1, &set->tmp_s[set->cmp++], 1);
+			set->len += write(1, &set->tmp_s[set->cmp++], 1);
 	}
 }
 
@@ -61,9 +61,9 @@ static void	ft_str_val_len(t_set *set)
 	else
 	{
 		while ((set->cnt - set->tmp_1) > 0 && (set->cnt--) > 0)
-			write(1, " ", 1);
+			set->len += write(1, " ", 1);
 		while (set->cmp < set->tmp_1)
-			write(1, &set->tmp_s[set->cmp++], 1);
+			set->len += write(1, &set->tmp_s[set->cmp++], 1);
 	}
 }
 
@@ -80,9 +80,9 @@ static void	ft_str_prec(t_set *set)
 	else
 	{
 		while ((set->cnt - set->tmp_1) > 0 && (set->cnt--) > 0)
-			write(1, " ", 1);
+			set->len += write(1, " ", 1);
 		while (set->cmp < set->tmp_1)
-			write(1, &set->tmp_s[set->cmp++], 1);
+			set->len += write(1, &set->tmp_s[set->cmp++], 1);
 	}
 }
 
@@ -105,6 +105,6 @@ void		ft_str_set(t_set *set, va_list ap)
 		set->cmp = 0;
 		set->tmp_1 = set->val_len;
 		while (set->cmp < set->tmp_1)
-			write(1, &set->tmp_s[set->cmp++], 1);
+			set->len += write(1, &set->tmp_s[set->cmp++], 1);
 	}
 }

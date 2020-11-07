@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 19:40:18 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/05 22:48:30 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/07 21:35:32 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,28 @@ void		ft_int_check(const char **format, t_set *set, va_list ap)
 
 void		ft_print_l(t_set *set, va_list ap)
 {
-	if (ft_strncmp(set->type, "ll", 2) == 0)
+	if (set->type_l == 2)
 		set->val = va_arg(ap, long long);
-	else if (ft_strncmp(set->type, "l", 1) == 0)
+	else if (set->type_l == 1)
 		set->val = va_arg(ap, long);
+	else if (set->type_h == 2)
+		set->val = va_arg(ap, char);
+	else if (set->type_h == 1)
+		set->val = va_arg(ap, short int);
 	else
 		set->val = va_arg(ap, int);
 }
 
 void		ft_print_ul(t_set *set, va_list ap)
 {
-	if (ft_strncmp(set->type, "ll", 2) == 0)
+	if (set->type_l == 2)
 		set->val_ul = va_arg(ap, unsigned long long);
-	else if (ft_strncmp(set->type, "l", 1) == 0)
+	else if (set->type_l == 1)
 		set->val_ul = va_arg(ap, unsigned long);
+	else if (set->type_h == 2)
+		set->val_ul = va_arg(ap, unsigned char);
+	else if (set->type_h == 1)
+		set->val_ul = va_arg(ap, unsigned short int);
 	else
 		set->val_ul = va_arg(ap, unsigned int);
 }

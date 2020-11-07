@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 22:11:56 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/05 18:13:24 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/07 16:53:47 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int			ft_parse_printf(const char **format, t_set *set, va_list ap)
 		else if (**format == '.' && **format && *((*format)++))
 			ft_parse_precision(format, set, ap);
 		else if (**format == 'l' || **format == 'h')
-			ft_parse_lh(format, set, ap);
+			ft_parse_ex_type(format, set, ap);
 	}
 	if (**format == '%')
 	{

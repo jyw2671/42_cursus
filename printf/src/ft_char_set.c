@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 19:32:59 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/29 21:24:48 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/07 17:02:35 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void		ft_print_char(t_set *set)
 {
 	if (set->lefted != 0)
 	{
-		write(1, &set->tmp_c, 1);
+		set->len += write(1, &set->tmp_c, 1);
 		if (set->wid > 1)
 		{
 			while (set->wid > 1 && (set->wid--) > 0)
-				write(1, " ", 1);
+				set->len += write(1, " ", 1);
 		}
 	}
 	else
@@ -28,11 +28,11 @@ void		ft_print_char(t_set *set)
 		if (set->wid != 0)
 		{
 			while ((set->wid - 1) > 0 && (set->wid--) > 0)
-				write(1, "0", 1);
-			write(1, &set->tmp_c, 1);
+				set->len += write(1, "0", 1);
+			set->len += write(1, &set->tmp_c, 1);
 		}
 		else
-			write(1, &set->tmp_c, 1);
+			set->len += write(1, &set->tmp_c, 1);
 	}
 }
 
@@ -46,8 +46,8 @@ void			ft_char_set(t_set *set, va_list ap)
 		if (set->wid > 1)
 		{
 			while (set->wid > 1 && (set->wid--) > 0)
-				write(1, " ", 1);
+				set->len += write(1, " ", 1);
 		}
-		write(1, &set->tmp_c, 1);
+		set->len += write(1, &set->tmp_c, 1);
 	}
 }

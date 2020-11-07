@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 19:28:00 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/05 18:13:05 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/07 17:02:10 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	ft_print_null(t_set *set)
 {
 	while (set->wid > 0 && (set->wid--) > 0)
-		write(1, " ", 1);
+		set->len += write(1, " ", 1);
 }
 
 int		ft_str_zero_check(t_set *set)

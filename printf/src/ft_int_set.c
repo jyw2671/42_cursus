@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 14:45:01 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/05 21:49:49 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/07 16:52:01 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,21 @@ static void	ft_print_sign(t_set *set)
 	if (((set->z_flag == 0) || set->prec != 0) && (set->val_len >= set->prec))
 	{
 		while (((--set->p_len) - set->val_len) > 0)
-			write(1, " ", 1);
+			set->len += write(1, " ", 1);
 	}
 	else if ((set->z_flag == 0 || set->prec != 0) && (set->val_len < set->prec))
 	{
 		while (((--set->p_len) - set->prec) > 0)
-			write(1, " ", 1);
+			set->len += write(1, " ", 1);
 	}
 	if (set->val_sign == 1)
-		write(1, "-", 1);
+		set->len += write(1, "-", 1);
 	else
-		write(1, "+", 1);
+		set->len += write(1, "+", 1);
 	if (set->z_flag != 0 && set->prec == 0)
 	{
 		while (((--set->p_len) - set->val_len) > 0)
-			write(1, "0", 1);
+			set->len += write(1, "0", 1);
 	}
 	ft_int_print_prec(set);
 	ft_int_num(set);
@@ -70,13 +70,13 @@ static void	ft_print_signl(t_set *set)
 	if (set->lefted == 1)
 	{
 		if (set->val_sign == 1)
-			write(1, "-", 1);
+			set->len += write(1, "-", 1);
 		else
-			write(1, "+", 1);
+			set->len += write(1, "+", 1);
 		ft_int_print_prec(set);
 		ft_int_num(set);
 		while (((--set->p_len) - set->val_len) > 0)
-			write(1, " ", 1);
+			set->len += write(1, " ", 1);
 	}
 	else
 		ft_print_sign(set);
@@ -90,17 +90,17 @@ void		ft_int_num(t_set *set)
 		set->tmp_1 *= 10;
 	if (set->sign == 0 && set->lefted == 0 && set->s_flag == 0 && \
 	set->z_flag == 0 && set->sign_cnt != 0 && (set->val_len > set->prec))
-		write(1, "-", 1);
+		set->len += write(1, "-", 1);
 	while (set->tmp_1 > 0)
 	{
 		if (set->tmp_1 < 10)
 		{
 			set->tmp_c = (set->val_ul / set->tmp_1) + '0';
-			write(1, &set->tmp_c, 1);
+			set->len += write(1, &set->tmp_c, 1);
 			return ;
 		}
 		set->tmp_c = (set->val_ul / set->tmp_1) + '0';
-		write(1, &set->tmp_c, 1);
+		set->len += write(1, &set->tmp_c, 1);
 		set->val_ul %= set->tmp_1;
 		set->tmp_1 /= 10;
 	}
