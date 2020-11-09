@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 16:20:17 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/07 19:08:45 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/09 22:17:52 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,20 @@ typedef struct		s_list
 	void			*content;
 	struct s_list	*next;
 }					t_list;
+
+typedef struct		s_double
+{
+	union
+	{
+		double		d;
+		struct
+		{
+			size_t	frac : 52;
+			size_t	exp : 11;
+			size_t	sign : 1;
+		};
+	};
+}					t_double;
 
 size_t				ft_strlen(const char *str);
 size_t				ft_strlcpy(char *dst, const char *src, size_t size);
@@ -70,5 +84,6 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *), \
 		void (*del)(void *));
 unsigned long long	ft_pow(int b);
+char				*ft_dtoa(double val, int prec, char type);
 
 #endif

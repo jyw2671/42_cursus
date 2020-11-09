@@ -6,7 +6,7 @@ int	main(void)
 {
 	// unsigned long long a = -2147483648;
 
-	printf("%.2f", 10.135);
+	printf("%0.2f", 10.13000);
 
 	return (0);
 }

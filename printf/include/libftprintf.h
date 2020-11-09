@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 20:19:22 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/07 21:27:51 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/09 22:11:13 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct			s_set
 {
 	long long			val;
 	unsigned long long	val_ul;
+	double				tmp_d;
 	unsigned long long	tmp_1;
 	unsigned long long	tmp_2;
 	unsigned long		ptr_1;
@@ -29,7 +30,6 @@ typedef struct			s_set
 	int					len;
 	int					val_sign;
 	int					sign_cnt;
-	 // arg로 받은 인수 양수 음수 판별
 	int					val_len;
 	int					p_len;
 // parsing
@@ -44,7 +44,6 @@ typedef struct			s_set
 	int					prec_com;
 	int					type_l;
 	int					type_h;
-//
 	int					cnt;
 	int					cmp;
 	int					tmp_i;
@@ -66,33 +65,33 @@ typedef struct			s_num
 	};
 }						t_num;
 
-int		ft_printf(const char *format, ...);
-int		ft_parse_printf(const char **format, t_set *set, va_list ap);
-void	ft_parse_ex_type(const char **format, t_set *set, va_list ap);
-void	ft_parse_type(const char **format, t_set *set, va_list ap);
-int		ft_check_parse(const char **format, t_set *set, va_list ap);
-int		ft_str_zero_check(t_set *set);
-void	ft_int_check(const char **format, t_set *set, va_list ap);
-void	ft_print_ul(t_set *set, va_list ap);
-void	ft_print_l(t_set *set, va_list ap);
-void	ft_int_set(t_set *set);
-void	ft_int_num(t_set *set);
-void	ft_int_print_prec(t_set *set);
-void	ft_print_nflag(t_set *set);
-void	ft_int_print(t_set *set);
-void	ft_int_prec_com(t_set *set);
-void	ft_int_prec_cmp(t_set *set);
-void	ft_char_set(t_set *set, va_list ap);
-void	ft_str_set(t_set *set, va_list ap);
-void	ft_hex_set(const char **format, t_set *set, va_list ap);
-void	ft_hex_itoa(t_set *set);
-void	ft_hash_flag(t_set *set);
-void	ft_oct_set(t_set *set, va_list ap);
-void	ft_oct_itoa(t_set *set);
-void	ft_oct_hash_flag(t_set *set);
-void	ft_ptr_set(t_set *set, va_list ap);
-void	ft_ptr_itoa(t_set *set);
-void	ft_ptr_hash_flag(t_set *set);
-void	ft_float_set(t_set *set, va_list ap);
+int						ft_printf(const char *format, ...);
+int						ft_parse_printf(const char **format, t_set *set, va_list ap);
+void					ft_parse_ex_type(const char **format, t_set *set, va_list ap);
+void					ft_parse_type(const char **format, t_set *set, va_list ap);
+int						ft_check_parse(const char **format, t_set *set, va_list ap);
+int						ft_str_zero_check(t_set *set);
+void					ft_int_check(const char **format, t_set *set, va_list ap);
+void					ft_print_ul(t_set *set, va_list ap);
+void					ft_print_l(t_set *set, va_list ap);
+void					ft_int_set(t_set *set);
+void					ft_int_num(t_set *set);
+void					ft_int_print_prec(t_set *set);
+void					ft_print_nflag(t_set *set);
+void					ft_int_print(t_set *set);
+void					ft_int_prec_com(t_set *set);
+void					ft_int_prec_cmp(t_set *set);
+void					ft_char_set(t_set *set, va_list ap);
+void					ft_str_set(t_set *set, va_list ap);
+void					ft_hex_set(const char **format, t_set *set, va_list ap);
+void					ft_hex_itoa(t_set *set);
+void					ft_hash_flag(t_set *set);
+void					ft_oct_set(t_set *set, va_list ap);
+void					ft_oct_itoa(t_set *set);
+void					ft_oct_hash_flag(t_set *set);
+void					ft_ptr_set(t_set *set, va_list ap);
+void					ft_ptr_itoa(t_set *set);
+void					ft_ptr_hash_flag(t_set *set);
+void					ft_float_set(t_set *set, va_list ap);
 
 #endif
