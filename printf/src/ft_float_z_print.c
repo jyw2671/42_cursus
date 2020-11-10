@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dtoa.c                                          :+:      :+:    :+:   */
+/*   ft_float_z_print.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/09 18:30:36 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/09 22:30:33 by yjung            ###   ########.fr       */
+/*   Created: 2020/11/10 21:56:06 by yjung             #+#    #+#             */
+/*   Updated: 2020/11/10 22:44:18 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf.h"
 
-char	*ft_dtoa(double val, int prec, char type)
+void	ft_float_z_print(t_set *set)
 {
-	t_double	num;
-
-	num
-
+	if (set->prec_com != 0 && set->prec == 0)
+	{
+		if (set->val_sign == 1)
+			set->len += write(1, "-", 1);
+		if (set->val == 0)
+			set->len += write(1, "0", 1);
+		while (set->val > 0)
+		{
+			set->tmp_c = set->val % 10 + '0';
+			set->len += write(1, &set->tmp_c, 1);
+			set->val /= 10;
+		}
+		return ;
+	}
 }

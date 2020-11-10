@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 18:20:05 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/07 21:27:43 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/10 22:44:28 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int			ft_printf(const char *format, ...)
 	t_set		set;
 
 	set.len = 0;
+	set.len_ret = 0;
 	va_start(ap, format);
 	while (*format)
 	{
@@ -54,5 +55,6 @@ int			ft_printf(const char *format, ...)
 			ft_parse_printf(&format, &set, ap);
 	}
 	va_end(ap);
-	return (0);
+	set.len_ret += set.len;
+	return (set.len_ret);
 }

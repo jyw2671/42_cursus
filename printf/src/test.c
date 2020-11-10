@@ -1,12 +1,18 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <limits.h>
+#include <string.h>
 
 int	main(void)
 {
 	// unsigned long long a = -2147483648;
-
-	printf("%0.2f", 10.13000);
+	// char *a = "123\0";
+	// int b;
+	// int c;
+	// b = 12;
+	// c = strlen(b);
+	// printf("%d", c);
+	printf("%f", 999.999999);
 
 	return (0);
 }
@@ -26,4 +32,5 @@ int	main(void)
 //	-> +, ' '먹고 그 다음 '-' 먹는다 마지막을 '0' 먹음
 //	-> [.]이후 자릿수는 실수가 그 자릿수를 넘어가거나 precision이 6이상일때
 // 의문점 +와 ' ' 상관관계 잇고 -, 0 상관관계?
+//
 //

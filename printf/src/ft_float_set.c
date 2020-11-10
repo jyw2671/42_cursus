@@ -6,40 +6,99 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 20:10:25 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/09 22:18:03 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/10 22:44:27 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static void	ft_sign_bit(t_set *set, va_list ap, t_num *num)
+static void	ft_sign_bit(t_set *set, va_list ap, t_double *num)
 {
-	num->d_val = va_arg(ap, double);
+	num->d = va_arg(ap, double);
 	if (num->sign == 0)
 		set->val_sign = 0;
 	else
-		set->val_sign = 1;
-	// set->tmp_1 = ft_pow(set->prec);
-	set->tmp_d = num->d_val;
-	if (set->prec != 0)
 	{
-		set->tmp_1 = (int)(set->tmp_d * ft_pow(set->prec));
+		set->val_sign = 1;
+		num->d = -num->d;
+	}
+	set->val = (long)num->d;
+}
+
+static void	ft_float_print(t_set *set)
+{
+	int		i;
+
+	i = 0;
+	if (set->lefted != 0 || (set->lefted == 0 && \
+	set->z_flag == 0) || (set->wid - set->cnt) <= 0)
+	{
+		if (set->sign != 0 && set->val_sign == 0)
+			set->len += write(1, "+", 1);
+		else if (set->val_sign != 0)
+			set->len += write(1, "-", 1);
+		else if (set->s_flag != 0)
+			set->len += write(1, " ", 1);
+	}
+	while (set->tmp_s[i] != '\0')
+		set->len += write(1, &set->tmp_s[i++], 1);
+	free(set->tmp_s);
+}
+
+static void	ft_float_z_flag(t_set *set)
+{
+	if (set->lefted == 0 && set->z_flag != 0)
+	{
+		if (set->sign != 0 && set->val_sign == 0)
+			set->len += write(1, "+", 1);
+		else if (set->val_sign != 0)
+			set->len += write(1, "-", 1);
+		else if (set->s_flag != 0)
+			set->len += write(1, " ", 1);
+		while (((set->wid--) - set->cnt) > 0)
+			set->len += write(1, "0", 1);
+		ft_float_print(set);
+	}
+	else
+	{
+		while (((set->wid--) - set->cnt) > 0)
+			set->len += write(1, " ", 1);
+		ft_float_print(set);
 	}
 }
 
-void		ft_standard_round(t_set *set, t_num *num)
+static void	ft_float_lefted(t_set *set)
 {
-	set->tmp_1 = (int)(set->tmp_d * ft_pow(set->prec) + 0.5);
-}
-
-void		ft_check_round(t_set *set, t_num *num)
-{
-	if (set->)
+	if ((set->wid - set->cnt) > 0)
+	{
+		if (set->sign != 0 || set->s_flag != 0)
+			set->wid--;
+		else if (set->val_sign == 1)
+			set->wid--;
+		if (set->lefted != 0)
+		{
+			ft_float_print(set);
+			while (((set->wid--) - set->cnt) > 0)
+				set->len += write(1, " ", 1);
+		}
+		else
+			ft_float_z_flag(set);
+	}
+	else
+		ft_float_print(set);
 }
 
 void		ft_float_set(t_set *set, va_list ap)
 {
-	t_num	num;
+	t_double	num;
 
 	ft_sign_bit(set, ap, &num);
+	if (set->prec_com != 0 && set->prec == 0)
+	{
+		ft_float_z_print(set);
+		return ;
+	}
+	ft_round_check(&num, set, set->prec);
+	set->cnt = ft_strlen(set->tmp_s);
+	ft_float_lefted(set);
 }
