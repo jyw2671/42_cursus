@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 16:20:17 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/10 22:44:52 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/11 18:34:14 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *), \
 		void (*del)(void *));
 unsigned long long	ft_pow(int b);
+unsigned long long	ft_int_cnt(unsigned long long num);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 20:19:22 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/10 22:44:30 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/11 17:14:08 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ typedef struct			s_set
 {
 	long long			val;
 	unsigned long long	val_ul;
-	double				tmp_d;
 	unsigned long long	tmp_1;
 	unsigned long long	tmp_2;
 	unsigned long		ptr_1;
@@ -95,6 +94,6 @@ void					ft_ptr_itoa(t_set *set);
 void					ft_ptr_hash_flag(t_set *set);
 void					ft_float_set(t_set *set, va_list ap);
 void					ft_round_check(t_double *num, t_set *set, int prec);
-void					ft_float_z_print(t_set *set);
+void					ft_float_z_print(t_set *set, t_double *num);
 
 #endif

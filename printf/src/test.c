@@ -7,12 +7,13 @@ int	main(void)
 {
 	// unsigned long long a = -2147483648;
 	// char *a = "123\0";
-	// int b;
+	// int a = 1064;
 	// int c;
+	// c = (((a / 10) % 10) % 2);
 	// b = 12;
 	// c = strlen(b);
 	// printf("%d", c);
-	printf("%f", 999.999999);
+	printf("%.16f",  0.999999999999999900);
 
 	return (0);
 }
@@ -34,3 +35,8 @@ int	main(void)
 // 의문점 +와 ' ' 상관관계 잇고 -, 0 상관관계?
 //
 //
+
+
+// printf("%.16f",  0.999999999999999900);
+
+
