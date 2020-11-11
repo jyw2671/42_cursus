@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 20:19:22 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/11 17:14:08 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/11 22:40:13 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,11 @@ int						ft_str_zero_check(t_set *set);
 void					ft_int_check(const char **format, t_set *set, va_list ap);
 void					ft_print_ul(t_set *set, va_list ap);
 void					ft_print_l(t_set *set, va_list ap);
+void					ft_print_flag(t_set *set);
 void					ft_int_set(t_set *set);
 void					ft_int_num(t_set *set);
 void					ft_int_print_prec(t_set *set);
-void					ft_print_nflag(t_set *set);
+// void					ft_print_nflag(t_set *set);
 void					ft_int_print(t_set *set);
 void					ft_int_prec_com(t_set *set);
 void					ft_int_prec_cmp(t_set *set);

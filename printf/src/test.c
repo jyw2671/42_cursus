@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <limits.h>
 #include <string.h>
+// #include "libftprintf.h"
 
 int	main(void)
 {
@@ -13,7 +14,7 @@ int	main(void)
 	// b = 12;
 	// c = strlen(b);
 	// printf("%d", c);
-	printf("%.16f",  0.999999999999999900);
+	printf("% +010.d", 8);
 
 	return (0);
 }
@@ -38,5 +39,5 @@ int	main(void)
 
 
 // printf("%.16f",  0.999999999999999900);
-
-
+//printf("%0*.*i", 2, 0, 8);
+// gcc -I ../include -I ../libft/include -L ../ -lftprintf test.c

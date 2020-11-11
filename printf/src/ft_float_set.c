@@ -6,13 +6,13 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 20:10:25 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/11 20:48:36 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/11 22:40:20 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static void	ft_print_flag(t_set *set)
+void		ft_print_flag(t_set *set)
 {
 	if (set->sign != 0 && set->val_sign == 0)
 		set->len += write(1, "+", 1);
