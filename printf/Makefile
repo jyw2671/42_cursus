@@ -6,7 +6,7 @@
 #    By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/14 22:16:45 by yjung             #+#    #+#              #
-#    Updated: 2020/11/11 22:40:25 by yjung            ###   ########.fr        #
+#    Updated: 2020/11/12 16:52:35 by yjung            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,11 +26,13 @@ LIB_FILE = $(LIB_DIR)/$(LIBFT)
 LIB_I_DIR = $(LIB_DIR)/include
 
 SRC = ft_printf.c ft_parse_printf.c ft_check_parse.c ft_parse_type.c \
-	ft_int_set.c ft_int_print.c \
-	ft_char_set.c ft_str_set.c ft_str_zero_check.c ft_int_check.c \
-	ft_hex_set.c ft_hex_print.c ft_ptr_set.c ft_ptr_print.c \
-	ft_oct_set.c ft_oct_print.c ft_float_set.c ft_float_print.c \
-	ft_float_z_print.c
+	ft_int_set.c ft_int_print.c ft_int_check.c \
+	ft_char_set.c ft_str_set.c ft_str_zero_check.c \
+	ft_hex_set.c ft_hex_print.c \
+	ft_ptr_set.c ft_ptr_print.c \
+	ft_oct_set.c ft_oct_print.c \
+	ft_float_set.c ft_float_print.c ft_float_z_print.c \
+	ft_big_int.c
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(notdir $(SRC:.c=.o)))
 

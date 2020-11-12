@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 18:20:05 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/10 22:44:28 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/12 16:47:20 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static void	ft_rm_set(t_set *set)
 	set->val = 0;
 	set->val_ul = 0;
 	set->val_sign = 0;
-	set->sign_cnt = 0;
 	set->val_len = 0;
 	set->p_len = 0;
 	set->z_flag = 0;

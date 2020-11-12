@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 17:03:19 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/07 17:01:14 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/12 16:45:41 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,27 +64,27 @@ static void	ft_ptr_wid(t_set *set)
 
 static void	ft_ptr_cnt(t_set *set)
 {
-	set->ptr_2 = set->ptr_1;
-	while (set->ptr_2 > 0)
+	set->tmp_2 = set->val_ul;
+	while (set->tmp_2 > 0)
 	{
-		set->ptr_2 /= 16;
+		set->tmp_2 /= 16;
 		set->val_len++;
 	}
-	set->ptr_3 = 1;
-	if (set->ptr_1 != 0)
+	set->tmp_1 = 1;
+	if (set->val_ul != 0)
 		set->cnt = set->val_len;
 	else
 		set->cnt = 1;
 	while ((--set->val_len) > 0)
-		set->ptr_3 *= 16;
+		set->tmp_1 *= 16;
 }
 
 void		ft_ptr_set(t_set *set, va_list ap)
 {
-	set->ptr_1 = (unsigned long)va_arg(ap, void *);
+	set->val_ul = (unsigned long long)va_arg(ap, void *);
 	set->hash = 2;
 	ft_ptr_cnt(set);
-	if (set->prec_com == 1 && set->prec == 0 && set->ptr_1 == 0)
+	if (set->prec_com == 1 && set->prec == 0 && set->val_ul == 0)
 	{
 		while (set->wid > 0 && (set->wid--) > 0)
 			set->len += write(1, " ", 1);
