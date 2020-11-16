@@ -2,7 +2,7 @@
 #include <unistd.h>
 #include <limits.h>
 #include <string.h>
-// #include "libftprintf.h"
+#include "libftprintf.h"
 
 int	main(void)
 {
@@ -14,7 +14,9 @@ int	main(void)
 	// b = 12;
 	// c = strlen(b);
 	// printf("%d", c);
-	printf("% +010.d", 8);
+	t_set	set;
+	ft_printf("my printf	: % f", 0.8);
+	printf("\nprintf		: % f", 0.8);
 
 	return (0);
 }
@@ -41,3 +43,18 @@ int	main(void)
 // printf("%.16f",  0.999999999999999900);
 //printf("%0*.*i", 2, 0, 8);
 // gcc -I ../include -I ../libft/include -L ../ -lftprintf test.c
+
+// int main()
+// {
+// 	char	*format = "%.50f'";
+// 	char	*str_num = "2.234";
+// 	double	num = 2.234;
+
+// 	printf("\n==========================================\n");
+// 	printf("result of \"%s\" for ", str); printf("\"%s\"\n", str_num);
+// 	printf(str, num);
+// 	printf("\n000050000100005000020000500003");
+// 	printf("\n==========================================\n\n");
+
+// 	return (0);
+// }

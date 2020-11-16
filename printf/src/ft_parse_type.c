@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 17:16:09 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/10 19:47:47 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/16 23:01:10 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ void		ft_parse_type(const char **format, t_set *set, va_list ap)
 		else if (**format == 'n')
 			ft_print_n_type(set, ap);
 		else if (**format == 'f')
-			ft_float_set(set, ap);
+			ft_big_int_set(set, ap);
+			// ft_float_set(set, ap);
 		(*format)++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 17:03:19 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/12 16:45:41 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/16 16:55:23 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	ft_ptr_wid(t_set *set)
 	}
 	else if (set->lefted == 0 && set->z_flag != 0)
 	{
-		if (set->hash == 2 && set->ptr_1 != 0)
+		if (set->hash == 2 && set->val_ul != 0)
 			set->len += write(1, "0x", 2);
 		while (((set->wid - set->cnt) - set->hash) > 0 && (set->wid--) > 0)
 			set->len += write(1, "0", 1);
