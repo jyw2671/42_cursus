@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 20:19:22 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/16 23:02:19 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/17 17:40:54 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,6 @@ void					ft_float_set(t_set *set, va_list ap);
 void					ft_round_check(t_double *num, t_set *set, int prec);
 void					ft_float_z_print(t_set *set, t_double *num);
 
-void					ft_big_int(t_set *set, t_double *num, t_bint *bint);
-void					ft_big_int_set(t_set *set, va_list ap);
+// void					ft_big_int(t_set *set, t_double *num, t_bint *bint);
+// void					ft_big_int_set(t_set *set, va_list ap);
 #endif

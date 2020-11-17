@@ -6,7 +6,7 @@
 #    By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/14 22:16:45 by yjung             #+#    #+#              #
-#    Updated: 2020/11/16 21:07:31 by yjung            ###   ########.fr        #
+#    Updated: 2020/11/17 17:40:49 by yjung            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ SRC = ft_printf.c ft_parse_printf.c ft_check_parse.c ft_parse_type.c \
 	ft_ptr_set.c ft_ptr_print.c \
 	ft_oct_set.c ft_oct_print.c \
 	ft_float_set.c ft_float_print.c ft_float_z_print.c \
-	ft_big_int.c
+	# ft_big_int.c
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(notdir $(SRC:.c=.o)))
 

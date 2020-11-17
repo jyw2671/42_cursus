@@ -6,11 +6,18 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 12:31:17 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/07 16:55:35 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/17 19:03:57 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+
+static void	ft_hex_last(t_set *set)
+{
+	while (((set->wid - set->cnt) - set->hash) > 0 && (set->wid--) > 0)
+		set->len += write(1, " ", 1);
+	ft_hex_itoa(set);
+}
 
 static void	ft_hex_prec(t_set *set)
 {
@@ -44,7 +51,8 @@ static void	ft_hex_wid(t_set *set)
 		while (((set->wid - set->cnt) - set->hash) > 0 && (set->wid--) > 0)
 			set->len += write(1, " ", 1);
 	}
-	else if (set->lefted == 0 && set->z_flag != 0)
+	else if (set->z_flag != 0 && set->prec == 0 && (set->prec_com == 0 || \
+	set->ast_p_check == 1))
 	{
 		if (set->hash == 2 && set->val_ul != 0)
 		{
@@ -58,11 +66,7 @@ static void	ft_hex_wid(t_set *set)
 		ft_hex_itoa(set);
 	}
 	else
-	{
-		while (((set->wid - set->cnt) - set->hash) > 0 && (set->wid--) > 0)
-			set->len += write(1, " ", 1);
-		ft_hex_itoa(set);
-	}
+		ft_hex_last(set);
 }
 
 static void	ft_hex_cnt(t_set *set)
@@ -88,14 +92,19 @@ void		ft_hex_set(const char **format, t_set *set, va_list ap)
 	if (set->hash != 0 && set->val_ul == 0)
 		set->hash = 0;
 	ft_hex_cnt(set);
-	if (set->prec_com == 1 && set->prec == 0 && set->val_ul == 0)
+	if (set->prec_com == 1 && set->prec == 0 && set->val_ul == 0 && \
+	set->ast_p_check == 0)
 	{
 		while (set->wid > 0 && (set->wid--) > 0)
 			set->len += write(1, " ", 1);
 		return ;
 	}
-	if (set->prec_com == 1 || set->prec != 0)
+	if (set->ast_p_check == 1)
+		set->prec = 0;
+	if (set->prec != 0)
 		ft_hex_prec(set);
 	else
+	{
 		ft_hex_wid(set);
+	}
 }

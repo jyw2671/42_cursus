@@ -15,8 +15,26 @@ int	main(void)
 	// c = strlen(b);
 	// printf("%d", c);
 	t_set	set;
-	ft_printf("my printf	: % f", 0.8);
-	printf("\nprintf		: % f", 0.8);
+	ft_printf("my printf	: %0*.X%%", 4, 8);
+	printf("\nprintf		: %0*.X%%", 4, 8);
+	printf("\n===================================\n");
+	ft_printf("my printf	: %0*.x%%", 4, 0);
+	printf("\nprintf		: %0*.x", 4, 0);
+	printf("\n===================================\n");
+
+
+	ft_printf("my printf	: %0*.*x%%", 4, -2, 8);
+	printf("\nprintf		: %0*.*x", 4, -2, 8);
+	printf("\n===================================\n");
+	ft_printf("my printf	: %0*.*x%%", 4, -2, 0);
+	printf("\nprintf		: %0*.*x", 4, -2, 0);
+
+	printf("\n===================================\n");
+	ft_printf("my printf	: %4.*x%%", -2, 0);
+	printf("\nprintf		: %4.*x", -2, 0);
+	printf("\n===================================\n");
+	ft_printf("my printf	: %04.x%%", 1);
+	printf("\nprintf		: %04.x", 1);
 
 	return (0);
 }

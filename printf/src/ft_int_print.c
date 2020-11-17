@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 02:25:35 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/12 15:12:55 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/17 17:58:04 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ void		ft_int_prec_com(t_set *set)
 
 void		ft_int_print(t_set *set)
 {
-	if (set->z_flag != 0 && set->prec == 0 && set->prec_com == 0)
+	if (set->z_flag != 0 && set->prec == 0 && (set->prec_com == 0 || \
+	set->ast_p_check == 1))
 	{
 		ft_print_flag(set);
 		while ((set->p_len - set->val_len) > 0 && (set->p_len--) > 0)

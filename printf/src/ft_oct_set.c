@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 22:19:00 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/07 16:56:51 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/17 19:03:59 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ static void	ft_oct_wid(t_set *set)
 		while (((set->wid - set->cnt) - set->hash) > 0 && (set->wid--) > 0)
 			set->len += write(1, " ", 1);
 	}
-	else if (set->lefted == 0 && set->z_flag != 0)
+	else if (set->z_flag != 0 && set->prec == 0 && (set->prec_com == 0 || \
+	set->ast_p_check == 1))
 	{
 		if (set->hash != 0 && set->val_ul != 0)
 			set->len += write(1, "0", 1);
@@ -88,7 +89,9 @@ void		ft_oct_set(t_set *set, va_list ap)
 			set->len += write(1, " ", 1);
 		return ;
 	}
-	if (set->prec_com == 1 || set->prec != 0)
+	if (set->ast_p_check == 1)
+		set->prec = 0;
+	if (set->prec != 0)
 		ft_oct_prec(set);
 	else
 		ft_oct_wid(set);
