@@ -23,24 +23,24 @@ int	main(void)
 	double num1 = 3.0002;
 	double num2 = 123.0002;
 
-	t_double dnum;
+	// t_double dnum;
 
-	dnum.d = 0;
+	// dnum.d = 0;
 
-	dnum.exp = 2047;
-	dnum.frac = 1;
+	// dnum.exp = 2047;
+	// dnum.frac = 1;
 
-	int		num = 7;
+	double		num = 0.0002431;
 
-	printf("\n===================================\n");
-	printf("printf		: >% f\n",	dnum.d);
-	ft_printf("my printf	: >% f\n",	dnum.d);
-	printf("result : %d\n", num);
 	// printf("\n===================================\n");
-	// printf("printf		: %e%%\n",	num);
-	// printf("printf		: %e%%\n",	num1);
-	// printf("printf		: %e%%\n",	num2);
-	// printf("printf		: %.e%%\n",	num);
+	// printf("printf		: >% f\n",	dnum.d);
+	// ft_printf("my printf	: >% f\n",	dnum.d);
+	// printf("result : %d\n", num);
+	// printf("\n===================================\n");
+	printf("printf		: %e%%\n",	num);
+	printf("printf		: %e%%\n",	num1);
+	printf("printf		: %e%%\n",	num2);
+	printf("printf		: %.e%%\n",	num);
 	// ft_printf("my printf	: %ef",	0.09999999);
 
 	return (0);

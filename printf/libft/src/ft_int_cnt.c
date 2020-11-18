@@ -6,13 +6,13 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 14:27:22 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/11 22:40:25 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/19 02:05:07 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-unsigned long long	ft_int_cnt(unsigned long long num)
+int		ft_int_cnt(unsigned long long num)
 {
 	unsigned long long	len;
 

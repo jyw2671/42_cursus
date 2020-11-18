@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 20:19:22 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/19 00:11:47 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/19 02:05:03 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,4 @@ void					ft_float_lefted(t_set *set);
 void					ft_float_z_print(t_set *set, t_double *num);
 int						ft_nan_inf_print(t_set *set, t_double *num);
 
-// void					ft_big_int(t_set *set, t_double *num, t_bint *bint);
-// void					ft_big_int_set(t_set *set, va_list ap);
 #endif
