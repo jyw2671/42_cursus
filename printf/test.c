@@ -6,35 +6,42 @@
 
 int	main(void)
 {
-	// unsigned long long a = -2147483648;
-	// char *a = "123\0";
-	// int a = 1064;
-	// int c;
-	// c = (((a / 10) % 10) % 2);
-	// b = 12;
-	// c = strlen(b);
-	// printf("%d", c);
-	t_set	set;
-	ft_printf("my printf	: %0*.X%%", 4, 8);
-	printf("\nprintf		: %0*.X%%", 4, 8);
-	printf("\n===================================\n");
-	ft_printf("my printf	: %0*.x%%", 4, 0);
-	printf("\nprintf		: %0*.x", 4, 0);
-	printf("\n===================================\n");
+	// printf("\n===================================\n");
+	// printf("printf		: %.17f%%\n",	1.025978548534310421);
+	// ft_printf("my printf	: %.17f%%",	1.025978548534310421);
+	// printf("\n===================================\n");
+	// printf("printf		: %.18f%%\n",	1.125978548534310421);
+	// ft_printf("my printf	: %.18f",	1.125978548534310421);
+	// printf("\n===================================\n");
+	// printf("printf		: %.18f%%\n",	0.125978548534310421);
+	// ft_printf("my printf	: %.18f",	0.125978548534310421);
+	// printf("\n===================================\n");
+	// printf("printf		: %.16f%%\n",	0.999999999999999900);
+	// ft_printf("my printf	: %.16f",	0.999999999999999900);
 
+	// double num = 0.0002;
+	double num1 = 3.0002;
+	double num2 = 123.0002;
 
-	ft_printf("my printf	: %0*.*x%%", 4, -2, 8);
-	printf("\nprintf		: %0*.*x", 4, -2, 8);
-	printf("\n===================================\n");
-	ft_printf("my printf	: %0*.*x%%", 4, -2, 0);
-	printf("\nprintf		: %0*.*x", 4, -2, 0);
+	t_double dnum;
+
+	dnum.d = 0;
+
+	dnum.exp = 2047;
+	dnum.frac = 1;
+
+	int		num = 7;
 
 	printf("\n===================================\n");
-	ft_printf("my printf	: %4.*x%%", -2, 0);
-	printf("\nprintf		: %4.*x", -2, 0);
-	printf("\n===================================\n");
-	ft_printf("my printf	: %04.x%%", 1);
-	printf("\nprintf		: %04.x", 1);
+	printf("printf		: >% f\n",	dnum.d);
+	ft_printf("my printf	: >% f\n",	dnum.d);
+	printf("result : %d\n", num);
+	// printf("\n===================================\n");
+	// printf("printf		: %e%%\n",	num);
+	// printf("printf		: %e%%\n",	num1);
+	// printf("printf		: %e%%\n",	num2);
+	// printf("printf		: %.e%%\n",	num);
+	// ft_printf("my printf	: %ef",	0.09999999);
 
 	return (0);
 }

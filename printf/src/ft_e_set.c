@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_float_set.c                                     :+:      :+:    :+:   */
+/*   ft_e_set.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/07 20:10:25 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/19 00:11:49 by yjung            ###   ########.fr       */
+/*   Created: 2020/11/18 17:05:42 by yjung             #+#    #+#             */
+/*   Updated: 2020/11/19 00:11:45 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	ft_float_z_flag(t_set *set)
 	}
 }
 
-void		ft_float_lefted(t_set *set)
+static void	ft_float_lefted(t_set *set)
 {
 	set->cnt = ft_strlen(set->tmp_s);
 	if ((set->wid - set->cnt) > 0)
