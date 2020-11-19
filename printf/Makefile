@@ -6,7 +6,7 @@
 #    By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/14 22:16:45 by yjung             #+#    #+#              #
-#    Updated: 2020/11/20 00:05:27 by yjung            ###   ########.fr        #
+#    Updated: 2020/11/20 02:56:24 by yjung            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,6 @@ SRC = ft_printf.c ft_parse_printf.c ft_check_parse.c ft_parse_type.c \
 	ft_oct_set.c ft_oct_print.c \
 	ft_float_set.c ft_float_print.c ft_float_z_print.c \
 	ft_e_set.c ft_e_print.c
-	# ft_e_z_print.c
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(notdir $(SRC:.c=.o)))
 
@@ -50,10 +49,9 @@ $(LIB_FILE) :
 	@cp $(LIB_FILE) $(NAME)
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
-	$(CC) $(CFLAG) -I $(LIB_I_DIR) -I $(INC_DIR) -c $< -o $@
+	$(CC) $(DEBUG) $(CFLAG) -I $(LIB_I_DIR) -I $(INC_DIR) -c $< -o $@
 
-test : $(NAME) test.c
-	$(CC) $(CFLAG) -I $(LIB_I_DIR) -I $(INC_DIR) -L ./ -lftprintf test.c
+bonus : $(NAME)
 
 clean : $(LIBFT)_clean
 	make -C $(LIB_DIR) clean

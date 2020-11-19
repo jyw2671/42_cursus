@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 19:39:28 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/20 00:05:28 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/20 02:56:28 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,16 @@ void		ft_round_check(t_double *num, t_set *set, int prec)
 {
 	if (prec == 0 && set->prec_com == 0)
 		prec = 6;
-	if (((num->frac << (prec + 1 + (num->exp - 1023))) << 12) == 0)
+	if (((num->d1.d2.frac << (prec + 1 + (num->d1.d2.exp - 1023))) << 12) == 0)
 	{
-		set->val_ul = (unsigned long long)((num->d - set->val) * \
+		set->val_ul = (unsigned long long)((num->d1.d - set->val) * \
 			ft_pow(prec + 1));
 		ft_bankers_round(set);
 		ft_dtoa_f(set, prec, set->val_ul);
 	}
 	else
 	{
-		set->val_ul = (unsigned long long)((num->d - set->val) * \
+		set->val_ul = (unsigned long long)((num->d1.d - set->val) * \
 			ft_pow(prec + 1));
 		if ((set->val_ul % 10) >= 5)
 		{

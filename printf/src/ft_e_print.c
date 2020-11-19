@@ -6,12 +6,11 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 21:33:14 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/20 01:03:33 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/20 02:56:32 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include <stdio.h>
 
 static void	ft_dtoa_e(t_set *set, int cnt)
 {
@@ -24,10 +23,10 @@ static void	ft_dtoa_e(t_set *set, int cnt)
 		if (set->val == 0 && set->val_sign == 1)
 			cnt -= 2;
 	}
-	if (set->prec == 0 && set->prec_com != 0)
-		len = ft_int_cnt(set->val_ul) + 4;
-	else
+	if (!(set->prec == 0 && set->prec_com != 0) || set->hash != 0)
 		len = ft_int_cnt(set->val_ul) + 5;
+	else
+		len = ft_int_cnt(set->val_ul) + 4;
 	set->tmp_s = ((char *)malloc(sizeof(char) * (len + 1)));
 	set->tmp_s[len--] = '\0';
 	ft_dtoa_e_print(set, cnt, len);
@@ -37,7 +36,7 @@ static void	ft_dtoa_e(t_set *set, int cnt)
 		set->tmp_s[len--] = set->val_ul % 10 + '0';
 		set->val_ul /= 10;
 	}
-	if (!(set->prec == 0 && set->prec_com != 0))
+	if (!(set->prec == 0 && set->prec_com != 0) || set->hash != 0)
 		set->tmp_s[len--] = '.';
 	set->tmp_s[len] = set->val_ul + '0';
 }
@@ -59,7 +58,7 @@ static void	ft_cnt_exp(t_double *num, t_set *set, int prec)
 	else if (tmp == 0)
 	{
 		set->cmp = 15;
-		set->val_ul = (unsigned long long)(num->d * ft_pow(set->cmp));
+		set->val_ul = (unsigned long long)(num->d1.d * ft_pow(set->cmp));
 		tmp = set->val_ul;
 		while (tmp > 0)
 		{
@@ -72,12 +71,13 @@ static void	ft_cnt_exp(t_double *num, t_set *set, int prec)
 
 static void	ft_value_set(t_double *num, t_set *set, int prec)
 {
+	set->cmp = set->cnt;
 	if (set->cnt >= (prec + 1))
-		while (set->cnt > (prec + 1))
+		while (set->cmp > (prec + 1) && (set->cmp--) > 0)
 			set->val_ul /= 10;
 	else if (set->val > 0)
 	{
-		set->val_ul = (unsigned long long)((num->d - set->val) * \
+		set->val_ul = (unsigned long long)((num->d1.d - set->val) * \
 		ft_pow((prec + 1) - set->cnt));
 		set->val_ul += (set->val * ft_pow((prec + 1) - set->cnt));
 	}
@@ -130,7 +130,7 @@ void		ft_round_check_e(t_double *num, t_set *set, int prec)
 		prec = 6;
 	set->cnt = 0;
 	ft_cnt_exp(num, set, prec);
-	if (((num->frac << (prec + 1 + (num->exp - 1023))) << 12) == 0)
+	if (((num->d1.d2.frac << (prec + 1 + (num->d1.d2.exp - 1023))) << 12) == 0)
 	{
 		ft_value_set(num, set, prec);
 		ft_bankers_round(set);

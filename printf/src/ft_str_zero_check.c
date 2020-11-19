@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 19:28:00 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/07 17:02:10 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/20 02:48:38 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	ft_print_null(t_set *set)
 		set->len += write(1, " ", 1);
 }
 
-int		ft_str_zero_check(t_set *set)
+int			ft_str_zero_check(t_set *set)
 {
 	if (set->prec_com != 0 && set->prec == 0 && set->wid == 0)
 		return (-1);

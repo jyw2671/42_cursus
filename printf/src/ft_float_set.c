@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 20:10:25 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/20 00:05:30 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/20 02:57:57 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void		ft_float_set(t_set *set, va_list ap)
 {
 	t_double	num;
 
-	num.d = va_arg(ap, double);
+	num.d1.d = va_arg(ap, double);
 	if (ft_nan_inf_print(set, &num) == -1)
 		return ;
 	if (set->ast_p_check != 0)
@@ -98,7 +98,7 @@ void		ft_float_set(t_set *set, va_list ap)
 		ft_float_lefted(set);
 		return ;
 	}
-	set->val = (long long)num.d;
+	set->val = (long long)num.d1.d;
 	set->tmp_1 = 0;
 	ft_round_check(&num, set, set->prec);
 	ft_float_lefted(set);

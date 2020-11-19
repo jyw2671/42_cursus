@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 20:19:22 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/19 23:23:05 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/20 02:56:31 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef struct			s_set
 	int					val_sign;
 	int					val_len;
 	int					p_len;
-// parsing
 	int					z_flag;
 	int					s_flag;
 	int					lefted;
@@ -57,26 +56,24 @@ typedef struct			s_double
 			size_t		frac : 52;
 			size_t		exp : 11;
 			size_t		sign : 1;
-		};
-	};
+		}				d2;
+	}					d1;
 }						t_double;
 
-typedef struct			s_bint
-{
-	char				bianary[1074];
-	char				five[1074];
-	char				ret[1074];
-}						t_bint;
-
 int						ft_printf(const char *format, ...);
-int						ft_parse_printf(const char **format, t_set *set, va_list ap);
-void					ft_parse_ex_type(const char **format, t_set *set, va_list ap);
-void					ft_parse_type(const char **format, t_set *set, va_list ap);
-int						ft_check_parse(const char **format, t_set *set, va_list ap);
+int						ft_parse_printf(const char **format, t_set *set, \
+	va_list ap);
+void					ft_parse_ex_type(const char **format, t_set *set, \
+	va_list ap);
+void					ft_parse_type(const char **format, t_set *set, \
+	va_list ap);
+int						ft_check_parse(const char **format, t_set *set, \
+	va_list ap);
 void					ft_print_ul(t_set *set, va_list ap);
 void					ft_print_l(t_set *set, va_list ap);
 
-void					ft_int_check(const char **format, t_set *set, va_list ap);
+void					ft_int_check(const char **format, t_set *set, \
+	va_list ap);
 void					ft_print_flag(t_set *set);
 void					ft_int_set(t_set *set);
 void					ft_int_num(t_set *set);
@@ -111,6 +108,5 @@ int						ft_nan_inf_print(t_set *set, t_double *num);
 void					ft_e_set(t_set *set, va_list ap);
 void					ft_round_check_e(t_double *num, t_set *set, int prec);
 void					ft_dtoa_e_print(t_set *set, int cnt, int len);
-// void					ft_e_z_print(t_set *set, t_double *num);
 
 #endif

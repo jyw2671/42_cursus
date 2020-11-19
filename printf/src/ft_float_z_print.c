@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 21:56:06 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/20 00:05:30 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/20 02:56:29 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,16 @@ static void	ft_float_z_prec(t_set *set)
 
 int			ft_nan_inf_print(t_set *set, t_double *num)
 {
-	if (num->sign == 0)
+	if (num->d1.d2.sign == 0)
 		set->val_sign = 0;
 	else
 	{
 		set->val_sign = 1;
-		num->d = -num->d;
+		num->d1.d = -num->d1.d;
 	}
-	if (num->exp == 2047)
+	if (num->d1.d2.exp == 2047)
 	{
-		if (num->frac == 0)
+		if (num->d1.d2.frac == 0)
 			set->tmp_s = ft_strdup("inf");
 		else
 		{
@@ -57,7 +57,7 @@ int			ft_nan_inf_print(t_set *set, t_double *num)
 
 void		ft_float_z_print(t_set *set, t_double *num)
 {
-	set->val = (long)(num->d * 10);
+	set->val = (long)(num->d1.d * 10);
 	if ((((set->val / 10) % 10) % 2) == 0)
 	{
 		if (set->val % 10 > 5)
