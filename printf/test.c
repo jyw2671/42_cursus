@@ -20,8 +20,8 @@ int	main(void)
 	// ft_printf("my printf	: %.16f",	0.999999999999999900);
 
 	// double num = 0.0002;
-	double num1 = 3.0002;
-	double num2 = 123.0002;
+	// double num1 = 3.0002;
+	// double num2 = 0.999999;
 
 	// t_double dnum;
 
@@ -30,17 +30,35 @@ int	main(void)
 	// dnum.exp = 2047;
 	// dnum.frac = 1;
 
-	double		num = 0.0002431;
+	// double		num = 0.0002431;
 
 	// printf("\n===================================\n");
-	// printf("printf		: >% f\n",	dnum.d);
-	// ft_printf("my printf	: >% f\n",	dnum.d);
+	// printf("printf		: >% 5e\n",	dnum.d);
+	// ft_printf("my printf	: >% 5e\n",	dnum.d);
 	// printf("result : %d\n", num);
-	// printf("\n===================================\n");
-	printf("printf		: %e%%\n",	num);
-	printf("printf		: %e%%\n",	num1);
-	printf("printf		: %e%%\n",	num2);
-	printf("printf		: %.e%%\n",	num);
+
+
+	printf("printf		: %.0e\n", -0.099);
+	ft_printf("printf		: %.0e", -0.099);
+	printf("\n===================================\n");
+	printf("printf		: %.1e\n", -0.999);
+	ft_printf("printf		: %.1e", -0.999);
+	printf("\n===================================\n");
+	printf("printf		: %.0e\n", -0.999);
+	ft_printf("printf		: %.0e", -0.999);
+	printf("\n===================================\n");
+	printf("printf		: %.0e\n", -0.99);
+	ft_printf("printf		: %.0e", -0.99);
+	printf("\n===================================\n");
+	printf("printf		: %.0e\n", -0.099);
+	ft_printf("printf		: %.0e", -0.099);
+	printf("\n===================================\n");
+	printf("printf		: %.0e\n", -0.0099);
+	ft_printf("printf		: %.0e", -0.0099);
+	printf("\n===================================\n");
+
+
+	// printf("printf		: %.e%%\n",	num);
 	// ft_printf("my printf	: %ef",	0.09999999);
 
 	return (0);

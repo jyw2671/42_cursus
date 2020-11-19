@@ -6,23 +6,13 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 17:05:42 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/19 02:05:06 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/20 01:06:37 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void		ft_print_flag(t_set *set)
-{
-	if (set->sign != 0 && set->val_sign == 0)
-		set->len += write(1, "+", 1);
-	else if (set->val_sign != 0)
-		set->len += write(1, "-", 1);
-	else if (set->s_flag != 0)
-		set->len += write(1, " ", 1);
-}
-
-static void	ft_float_print(t_set *set)
+static void	ft_e_print(t_set *set)
 {
 	int		i;
 
@@ -34,25 +24,25 @@ static void	ft_float_print(t_set *set)
 		set->len += write(1, ".", 1);
 }
 
-static void	ft_float_z_flag(t_set *set)
+static void	ft_e_z_flag(t_set *set)
 {
 	if (set->lefted == 0 && set->z_flag != 0)
 	{
 		ft_print_flag(set);
 		while (((set->wid--) - set->cnt) > 0)
 			set->len += write(1, "0", 1);
-		ft_float_print(set);
+		ft_e_print(set);
 	}
 	else
 	{
 		while (((set->wid--) - set->cnt) > 0)
 			set->len += write(1, " ", 1);
 		ft_print_flag(set);
-		ft_float_print(set);
+		ft_e_print(set);
 	}
 }
 
-static void	ft_float_lefted(t_set *set)
+static void	ft_e_lefted(t_set *set)
 {
 	set->cnt = ft_strlen(set->tmp_s);
 	if ((set->wid - set->cnt) > 0)
@@ -66,21 +56,21 @@ static void	ft_float_lefted(t_set *set)
 		if (set->lefted != 0)
 		{
 			ft_print_flag(set);
-			ft_float_print(set);
+			ft_e_print(set);
 			while (((set->wid--) - set->cnt) > 0)
 				set->len += write(1, " ", 1);
 		}
 		else
-			ft_float_z_flag(set);
+			ft_e_z_flag(set);
 	}
 	else
 	{
 		ft_print_flag(set);
-		ft_float_print(set);
+		ft_e_print(set);
 	}
 }
 
-void		ft_float_set(t_set *set, va_list ap)
+void		ft_e_set(t_set *set, va_list ap)
 {
 	t_double	num;
 
@@ -92,14 +82,8 @@ void		ft_float_set(t_set *set, va_list ap)
 		set->prec = 0;
 		set->prec_com = 0;
 	}
-	if (set->prec_com != 0 && set->prec == 0)
-	{
-		ft_float_z_print(set, &num);
-		ft_float_lefted(set);
-		return ;
-	}
 	set->val = (long long)num.d;
 	set->tmp_1 = 0;
-	ft_round_check(&num, set, set->prec);
-	ft_float_lefted(set);
+	ft_round_check_e(&num, set, set->prec);
+	ft_e_lefted(set);
 }
