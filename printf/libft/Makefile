@@ -6,7 +6,7 @@
 #    By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/30 18:45:22 by yjung             #+#    #+#              #
-#    Updated: 2020/11/20 02:43:28 by yjung            ###   ########.fr        #
+#    Updated: 2020/11/20 16:37:20 by yjung            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ AR = ar crs
 
 OBJ_DIR = ./object
 SRC_DIR = ./src
-INC_DIR = ./include
+INC_DIR = ./includes
 
 SRC = \
 	ft_strlen.c ft_strlcat.c ft_strlcpy.c ft_strdup.c ft_strnstr.c \

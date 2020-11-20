@@ -6,7 +6,7 @@
 #    By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/14 22:16:45 by yjung             #+#    #+#              #
-#    Updated: 2020/11/20 02:56:24 by yjung            ###   ########.fr        #
+#    Updated: 2020/11/20 20:08:29 by yjung            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,12 +18,12 @@ AR = ar crs
 
 OBJ_DIR = ./obj
 SRC_DIR = ./src
-INC_DIR = ./include
+INC_DIR = ./includes
 
 LIBFT = libft.a
 LIB_DIR = ./libft
 LIB_FILE = $(LIB_DIR)/$(LIBFT)
-LIB_I_DIR = $(LIB_DIR)/include
+LIB_I_DIR = $(LIB_DIR)/includes
 
 SRC = ft_printf.c ft_parse_printf.c ft_check_parse.c ft_parse_type.c \
 	ft_int_set.c ft_int_print.c ft_int_check.c \
@@ -71,4 +71,4 @@ $(LIBFT)_clean :
 $(LIBFT)_fclean :
 	make -C $(LIB_DIR) fclean
 
-.PHONY: all clean fclean re $(LIBFT) $(LIBFT)_clean $(LIBFT)_fclean
+.PHONY: all clean fclean bonus re $(LIBFT) $(LIBFT)_clean $(LIBFT)_fclean

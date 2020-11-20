@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 20:19:22 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/20 02:56:31 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/20 16:37:54 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef struct			s_set
 	unsigned long long	tmp_1;
 	unsigned long long	tmp_2;
 	int					len;
-	int					len_ret;
 	int					val_sign;
 	int					val_len;
 	int					p_len;

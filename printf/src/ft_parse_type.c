@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 17:16:09 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/19 16:44:45 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/20 16:11:45 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ static void	ft_print_n_type(t_set *set, va_list ap)
 		num = va_arg(ap, int *);
 		*num = set->len;
 	}
-	set->len_ret += set->len;
-	set->len = 0;
 }
 
 void		ft_parse_ex_type(const char **format, t_set *set, va_list ap)
