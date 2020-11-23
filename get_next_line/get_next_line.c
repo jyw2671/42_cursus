@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 21:25:12 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/23 22:07:27 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/23 23:17:15 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,4 +15,6 @@
 int		get_next_line(int fd, char **line)
 {
 	static char		*store[OPEN_MAX];
+	char			*buf;
+
 }
