@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 21:26:35 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/23 23:17:17 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/24 23:10:10 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		get_next_line(int fd, char **line);
 size_t	ft_strlen(const char *str);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 char	*ft_strchr(const char *s, int c);
-char	*ft_strdup(const char *str, int n);
+char	*ft_strndup(const char *str, int n);
 char	*ft_strjoin(char const *s1, char const *s2);
 
 #endif

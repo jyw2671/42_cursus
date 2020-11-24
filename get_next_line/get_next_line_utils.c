@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 21:26:19 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/23 23:17:15 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/24 23:10:09 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*ft_strchr(const char *s, int c)
 	return ((char *)s);
 }
 
-char	*ft_strdup(const char *str, int n)
+char	*ft_strndup(const char *str, int n)
 {
 	int		i;
 	int		size;
