@@ -6,13 +6,11 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 21:25:12 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/25 17:17:48 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/25 18:46:09 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-// #include <fcntl.h>
-// #include <stdio.h>
 
 static int	get_next_line_make(char **store, char *buf, ssize_t read_size)
 {
@@ -63,27 +61,11 @@ int			get_next_line(int fd, char **line)
 		return (-1);
 	while ((read_size = read(fd, buf, BUFFER_SIZE)) >= 0)
 	{
-		if (get_next_line_make(&store[fd], (char *)buf, read_size) || read_size == 0)
+		if (get_next_line_make(&store[fd], (char *)buf, read_size) || \
+		read_size == 0)
 			break ;
 	}
 	if (read_size < 0)
 		return (-1);
 	return (get_next_line_check(&store[fd], line));
-}
-
-int			main(void)
-{
-	char *line = 0;
-	int ret;
-	int fd;
-
-	fd = open("42TESTERS-GNL/files/huge_line", O_RDONLY);
-	while ((ret = get_next_line(fd, &line)) > 0)
-	{
-		printf("%s\n", line);
-		free(line);
-	}
-	printf("%s\n", line);
-	free(line);
-	return (0);
 }
