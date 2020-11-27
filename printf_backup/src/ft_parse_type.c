@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 17:16:09 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/27 21:03:58 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/20 16:11:45 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void		ft_parse_type(const char **format, t_set *set, va_list ap)
 	if (**format == 'd' || **format == 'i' || **format == 'c' || \
 	**format == 's' || **format == 'u' || **format == 'x' || **format == 'X' \
 	|| **format == 'p' || **format == 'o' || **format == 'n' || **format == \
-	'f' || **format == 'e' || **format == 'g')
+	'f' || **format == 'e')
 	{
 		if (**format == 'd' || **format == 'i' || **format == 'u')
 			ft_int_check(format, set, ap);
@@ -102,8 +102,6 @@ void		ft_parse_type(const char **format, t_set *set, va_list ap)
 			ft_float_set(set, ap);
 		else if (**format == 'e')
 			ft_e_set(set, ap);
-		else if(**format == 'g')
-			ft_g_set(set, ap);
 		(*format)++;
 	}
 }

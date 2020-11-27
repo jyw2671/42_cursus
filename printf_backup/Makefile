@@ -6,7 +6,7 @@
 #    By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/14 22:16:45 by yjung             #+#    #+#              #
-#    Updated: 2020/11/27 21:04:01 by yjung            ###   ########.fr        #
+#    Updated: 2020/11/20 20:08:29 by yjung            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,9 +50,6 @@ $(LIB_FILE) :
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
 	$(CC) $(DEBUG) $(CFLAG) -I $(LIB_I_DIR) -I $(INC_DIR) -c $< -o $@
-
-test : $(NAME) test.c
-	$(CC) $(DEBUG) $(CFLAG) -I $(LIB_I_DIR) -I $(INC_DIR) -L ./ -lftprintf test.c
 
 bonus : $(NAME)
 

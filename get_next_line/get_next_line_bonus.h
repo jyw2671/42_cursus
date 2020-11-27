@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 17:05:30 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/25 18:48:07 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/27 21:04:33 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE	1
+#  define BUFFER_SIZE	256
 # endif
 
 # ifndef OPEN_MAX

@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 21:25:12 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/25 18:46:09 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/27 21:05:11 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int			get_next_line(int fd, char **line)
 	char			*buf[BUFFER_SIZE + 1];
 	ssize_t			read_size;
 
-	if (!line || fd > OPEN_MAX || BUFFER_SIZE <= 0)
+	if (!line || fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0)
 		return (-1);
 	while ((read_size = read(fd, buf, BUFFER_SIZE)) >= 0)
 	{
