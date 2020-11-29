@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 17:06:39 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/25 17:07:53 by yjung            ###   ########.fr       */
+/*   Updated: 2020/11/29 18:50:28 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ char	*ft_strndup(const char *str, int n)
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*ret;
-	size_t	i;
-	size_t	j;
-	size_t	len;
+	ssize_t	i;
+	ssize_t	j;
+	ssize_t	len;
 
 	if (s1 == NULL || s2 == NULL)
 		return (0);
