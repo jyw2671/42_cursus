@@ -6,11 +6,11 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 16:21:20 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/09 16:26:14 by yjung            ###   ########.fr       */
+/*   Updated: 2021/03/22 20:32:51 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isprint(int c)
+int	ft_isprint(int c)
 {
 	return (32 <= c && 126 >= c);
 }

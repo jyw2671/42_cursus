@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/13 00:13:40 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/13 02:26:08 by yjung            ###   ########.fr       */
+/*   Updated: 2021/03/22 20:36:49 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static size_t	ft_cnt_digit(int n)
 	return (cnt);
 }
 
-char			*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	unsigned int	nbr;
 	char			*ret;
@@ -35,8 +35,10 @@ char			*ft_itoa(int n)
 	if (n == 0)
 		return (ft_strdup("0"));
 	len = ft_cnt_digit(n);
-	sign = (n >= 0) ? 0 : 1;
-	nbr = (n < 0) ? -n : n;
+	((sign = 1) && (n >= 0) && (sign = 0));
+	nbr = n;
+	if (n < 0)
+		nbr = -n;
 	ret = (char *)malloc(sizeof(char) * (sign + len + 1));
 	if (ret == NULL)
 		return (0);

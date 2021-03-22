@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 20:16:30 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/14 17:11:57 by yjung            ###   ########.fr       */
+/*   Updated: 2021/03/22 20:42:39 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static size_t	ft_len(char const *s, char c)
 	return (len);
 }
 
-static char		*ft_strdup_len(const char *s, size_t len)
+static char	*ft_strdup_len(const char *s, size_t len)
 {
 	size_t	i;
 	char	*ret;
@@ -61,32 +61,31 @@ static char		*ft_strdup_len(const char *s, size_t len)
 	return (ret);
 }
 
-static void		ft_free_arr(char **s, int i)
+static void	ft_free_arr(char **s, int i)
 {
 	while (i--)
 		free(s[i]);
 	free(s);
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**ret;
 	size_t	cnt;
 	size_t	len;
 	size_t	i;
 
-	if (s == NULL)
-		return (0);
 	cnt = ft_cutter(s, c);
-	if (!(ret = (char **)malloc(sizeof(char *) * (cnt + 1))))
+	ret = (char **)malloc(sizeof(char *) * (cnt + 1));
+	if (!ret)
 		return (0);
 	i = -1;
 	while (++i < cnt)
 	{
 		while (*s && *s == c)
 			s++;
-		len = ft_len(s, c);
-		if ((ret[i] = ft_strdup_len(s, len)) == NULL)
+		((len = ft_len(s, c)) && (ret[i] = ft_strdup_len(s, len)));
+		if (ret[i] == NULL)
 		{
 			ft_free_arr(ret, i - 1);
 			return (0);

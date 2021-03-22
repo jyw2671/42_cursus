@@ -6,13 +6,13 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 19:00:05 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/02 16:21:35 by yjung            ###   ########.fr       */
+/*   Updated: 2021/03/22 20:43:29 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	unsigned char	*str_s1;
 	unsigned char	*str_s2;

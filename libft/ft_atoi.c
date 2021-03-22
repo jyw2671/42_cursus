@@ -6,11 +6,11 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 16:54:58 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/09 19:52:03 by yjung            ###   ########.fr       */
+/*   Updated: 2021/03/22 20:32:23 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int					sign;
 	unsigned long long	cnt;

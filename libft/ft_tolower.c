@@ -6,11 +6,11 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 16:39:18 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/09 18:58:45 by yjung            ###   ########.fr       */
+/*   Updated: 2021/03/22 20:44:19 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_tolower(int c)
+int	ft_tolower(int c)
 {
 	if ('A' <= c && 'Z' >= c)
 		return (c + ('a' - 'A'));

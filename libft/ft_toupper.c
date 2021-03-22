@@ -6,11 +6,11 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 16:28:51 by yjung             #+#    #+#             */
-/*   Updated: 2020/10/09 16:38:34 by yjung            ###   ########.fr       */
+/*   Updated: 2021/03/22 20:44:14 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_toupper(int c)
+int	ft_toupper(int c)
 {
 	if ('a' <= c && 'z' >= c)
 		return (c - ('a' - 'A'));

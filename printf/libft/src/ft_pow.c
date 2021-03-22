@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 19:04:07 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/19 00:11:44 by yjung            ###   ########.fr       */
+/*   Updated: 2021/03/22 20:30:49 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 unsigned long long	ft_pow(int b)
 {
-	unsigned long long a;
+	unsigned long long	a;
 
 	a = 10;
 	while ((--b) > 0)
