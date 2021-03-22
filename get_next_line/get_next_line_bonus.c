@@ -6,7 +6,7 @@
 /*   By: yjung <yjung@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 17:04:45 by yjung             #+#    #+#             */
-/*   Updated: 2020/11/29 18:49:13 by yjung            ###   ########.fr       */
+/*   Updated: 2021/03/22 20:21:10 by yjung            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ static int	get_next_line_check(char **store, char **line)
 	char	*tmp;
 	char	*ptr;
 
-	if ((ptr = ft_strchr(*store, '\n')))
+	ptr = ft_strchr(*store, '\n');
+	if (ptr)
 	{
 		*line = ft_strndup(*store, ptr - *store);
 		tmp = ft_strndup(ptr + 1, ft_strlen(ptr + 1));
@@ -51,7 +52,7 @@ static int	get_next_line_check(char **store, char **line)
 	}
 }
 
-int			get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	static char		*store[OPEN_MAX];
 	char			*buf[BUFFER_SIZE + 1];
@@ -59,11 +60,13 @@ int			get_next_line(int fd, char **line)
 
 	if (!line || fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0)
 		return (-1);
-	while ((read_size = read(fd, buf, BUFFER_SIZE)) >= 0)
+	read_size = read(fd, buf, BUFFER_SIZE);
+	while (read_size >= 0)
 	{
 		if (get_next_line_make(&store[fd], (char *)buf, read_size) || \
 		read_size == 0)
 			break ;
+		read_size = read(fd, buf, BUFFER_SIZE);
 	}
 	if (read_size < 0)
 		return (-1);
